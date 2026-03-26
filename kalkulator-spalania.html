@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Spalania - Oblicz spalanie paliwa i koszt trasy | CalcPremium</title>
+    <meta name="description" content="Ile pali Twoje auto? Sprawdź średnie spalanie na 100km i oblicz ile wydasz na paliwo podczas podróży. Prosty kalkulator kosztów przejazdu.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Spalanie Paliwa</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-droplet" style="color: var(--primary);"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+            </div>
+            <h1>Kalkulator Spalania</h1>
+            <div class="input-group">
+                <label>Przejechany dystans (km)</label>
+                <input type="number" id="distance" placeholder="np. 450">
+            </div>
+            <div class="input-group">
+                <label>Zużyte paliwo (litry)</label>
+                <input type="number" id="fuel" placeholder="np. 35">
+            </div>
+            <div class="input-group">
+                <label>Cena za litr (zł)</label>
+                <input type="number" id="price" placeholder="np. 6.50" step="0.01">
+            </div>
+            <button class="btn-calc" onclick="calculateFuel()">Oblicz Zużycie i Koszt</button>
+
+            <div class="result-box">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div style="text-align: center;">
+                        <small>Średnie spalanie</small>
+                        <div class="result-value" id="avg-res" style="font-size: 1.5rem;">- l/100km</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <small>Koszt całkowity</small>
+                        <div class="result-value" id="cost-res" style="font-size: 1.5rem; color: #16a34a;">- zł</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Spalania?</h2>
+            <p>Kalkulator spalania to jedno z najpopularniejszych narzędzi wśród kierowców, służące do precyzyjnego określenia zużycia paliwa przez pojazd na dystansie 100 kilometrów. Niezależnie od tego, co pokazuje komputer pokładowy Twojego samochodu, ręczne wyliczenie oparte na faktycznym tankowaniu daje najbardziej wiarygodne dane. Nasz kalkulator pozwala dodatkowo oszacować całkowity koszt przejechanej trasy, co jest nieocenione przy planowaniu wakacyjnych wyjazdów lub rozliczaniu podróży służbowych.</p>
+
+            <h2>Jak obliczyć spalanie na 100 km?</h2>
+            <p>Najbardziej rzetelną metodą obliczenia spalania jest technika "pod korek":</p>
+            <ol>
+                <li>Zatankuj samochód do pełna i wyzeruj licznik przebiegu dziennego.</li>
+                <li>Przejedź dowolny dystans (najlepiej kilkaset kilometrów).</li>
+                <li>Zatankuj ponownie do pełna na tej samej stacji.</li>
+                <li>Odczytaj z dystrybutora liczbę wlanych litrów i sprawdź dystans z licznika.</li>
+                <li>Wpisz te dane do naszego kalkulatora. Wzór brzmi: <strong>(Zużyte paliwo / Przejechany dystans) * 100</strong>.</li>
+            </ol>
+
+            <h2>Czynniki wpływające na zużycie paliwa</h2>
+            <p>Warto pamiętać, że spalanie nie jest wartością stałą. Nawet w tym samym aucie może się ono drastycznie różnić w zależności od:</p>
+            <ul>
+                <li><strong>Techniki jazdy:</strong> Agresywne ruszanie i częste hamowanie (jazda miejska) zwiększa spalanie nawet o 30%.</li>
+                <li><strong>Prędkości:</strong> Opór powietrza rośnie kwadratowo do prędkości – jazda 140 km/h zamiast 110 km/h to znacznie wyższe koszty.</li>
+                <li><strong>Obciążenia:</strong> Dodatkowy bagażnik dachowy czy pełna obsada pasażerów zmuszają silnik do cięższej pracy.</li>
+                <li><strong>Stanu technicznego:</strong> Niskie ciśnienie w oponach lub zabrudzony filtr powietrza to ukryci złodzieje paliwa.</li>
+            </ul>
+
+            <h2>Zastosowania Kalkulatora Kosztów Podróży</h2>
+            <p>Dzięki funkcji obliczania sumarycznej kwoty, nasze narzędzie pomaga w:</p>
+            <ul>
+                <li><strong>Rozliczaniu kosztów:</strong> Jeśli podróżujesz ze znajomymi, możecie łatwo podzielić koszt benzyny na wszystkich pasażerów.</li>
+                <li><strong>Wybieraniu środka transportu:</strong> Sprawdź, czy bardziej opłaca się jechać autem we dwoje, czy wybrać bilet kolejowy.</li>
+                <li><strong>Kontroli wydatków:</strong> Prowadzenie dziennika spalania pozwala wcześnie wykryć usterki silnika objawiające się nagłym wzrostem apetytu na paliwo.</li>
+            </ul>
+
+            <h2>Przykłady obliczeń</h2>
+            <p>Przykład: Przejechałeś 600 km i zatankowałeś 42 litry benzyny w cenie 6,60 zł.</p>
+            <ol>
+                <li>Dzielimy 42 przez 600 = 0.07.</li>
+                <li>Mnożymy przez 100 = 7.0 l/100km.</li>
+                <li>Koszt całkowity: 42 litry * 6.60 zł = 277.20 zł.</li>
+                <li><strong>Wniosek:</strong> Twoja podróż kosztowała ok. 277 zł.</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Kalkulatorze Spalania</h2>
+                <div class="faq-item">
+                    <h3>Dlaczego wynik z komputera pokładowego jest inny?</h3>
+                    <p>Komputery w autach często zaniżają realne spalanie o ok. 0,2 - 0,5 litra, ponieważ korzystają z czasu wtrysku paliwa, a nie z faktycznego przepływu.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czy jazda na klimatyzacji zwiększa spalanie?</h3>
+                    <p>Tak, działająca klimatyzacja obciąża silnik dodatkowo, co skutkuje wzrostem spalania o ok. 0,5 - 1 litra na każde 100 km.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Jakie paliwo jest najbardziej kaloryczne?</h3>
+                    <p>Olej napędowy (Diesel) ma wyższą gęstość energetyczną niż benzyna, co w połączeniu z wyższą sprawnością silników wysokoprężnych skutkuje niższym spalaniem l/100km.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-leasingowy.html" class="related-link">Kalkulator Leasingowy</a>
+                <a href="kalkulator-procentowy.html" class="related-link">Kalkulator Procentowy</a>
+                <a href="kalkulator-promili.html" class="related-link">Kalkulator Promili</a>
+                <a href="kalkulator-dni.html" class="related-link">Kalkulator Dni</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Podróżuj taniej i mądrzej.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calculateFuel() {
+            const dist = parseFloat(document.getElementById('distance').value);
+            const fuel = parseFloat(document.getElementById('fuel').value);
+            const price = parseFloat(document.getElementById('price').value || 0);
+
+            if (!CalcUI.validate(['distance', 'fuel'])) return;
+
+            const avg = (fuel / dist) * 100;
+            const total = fuel * price;
+
+            document.getElementById('avg-res').textContent = CalcUI.formatNumber(avg, 2) + " l/100km";
+            document.getElementById('cost-res').textContent = CalcUI.formatNumber(total, 2) + " zł";
+            document.querySelector('.result-box').classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Alkoholu - Przelicz jednostki i kalorie | CalcPremium</title>
+    <meta name="description" content="Ile kalorii ma piwo? Ile jednostek alkoholu wypiłeś? Sprawdź nasz kalkulator alkoholu online. Zdrowie i świadomość w jednym miejscu.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Kalkulator Alkoholu</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-coffee" style="color: var(--primary);"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+            </div>
+            <h1>Kalkulator Alkoholu</h1>
+            <div class="input-group">
+                <label>Rodzaj napoju</label>
+                <select id="drink-type">
+                    <option value="5">Piwo (5%)</option>
+                    <option value="12">Wino (12%)</option>
+                    <option value="40">Wódka / Whisky (40%)</option>
+                    <option value="17">Likier (17%)</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Ilość (ml)</label>
+                <input type="number" id="volume" placeholder="np. 500">
+            </div>
+            <button class="btn-calc" onclick="calculateAlcohol()">Przelicz</button>
+
+            <div class="result-box">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div style="text-align: center;">
+                        <small>Czysty alkohol (g)</small>
+                        <div class="result-value" id="grams-res" style="font-size: 1.5rem;">-</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <small>Kalorie (kcal)</small>
+                        <div class="result-value" id="alcohol-kcal" style="font-size: 1.5rem; color: #ef4444;">-</div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                    Jedna standardowa jednostka alkoholu (SJA) to 10g czystego etanolu.
+                </p>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Alkoholu?</h2>
+            <p>Kalkulator alkoholu to narzędzie edukacyjne służące do precyzyjnego wyliczania zawartości czystego etanolu oraz wartości energetycznej spożywanych napojów procentowych. Choć większość z nas kojarzy alkohol głównie z dobrą zabawą, rzadko zastanawiamy się nad jego realnym wpływem na bilans kaloryczny oraz obciążenie organizmu. Nasz kalkulator przelicza mililitry na gramy i kalorie, pomagając w świadomym podejmowaniu decyzji dotyczących stylu życia.</p>
+
+            <h2>Ile kalorii ma alkohol?</h2>
+            <p>Alkohol jest substancją o bardzo wysokiej gęstości energetycznej – 1 gram czystego etanolu dostarcza aż 7 kilokalorii (kcal). Dla porównania, 1 gram białka lub węglowodanów to 4 kcal, a 1 gram tłuszczu to 9 kcal. Oznacza to, że alkohol jest niemal tak kaloryczny jak tłuszcz, a są to tzw. "puste kalorie", które nie dostarczają organizmowi żadnych wartości odżywczych, witamin ani minerałów.</p>
+
+            <h2>Zastosowania Kalkulatora Alkoholu</h2>
+            <p>Nasz przelicznik jest szczególnie przydatny dla:</p>
+            <ul>
+                <li><strong>Osób na diecie redukcyjnej:</strong> Pozwala uwzględnić alkohol w dziennym limicie kalorii (często to właśnie on jest przyczyną zahamowania spadku wagi).</li>
+                <li><strong>Osób dbających o zdrowie:</strong> Monitorowanie spożycia tzw. jednostek standardowych (SJA) pomaga uniknąć szkodliwych skutków picia.</li>
+                <li><strong>Kierowców:</strong> Wiedza o gramaturze spożytego alkoholu jest punktem wyjścia do obliczeń w kalkulatorze promili.</li>
+            </ul>
+
+            <h2>Czym jest Standardowa Jednostka Alkoholu (SJA)?</h2>
+            <p>W celach medycznych i statystycznych używa się pojęcia SJA. W Polsce przyjmuje się, że 1 jednostka to 10 gramów (ok. 12,5 ml) czystego 100% alkoholu etylowego. Przykładowo, duże piwo to ok. 2-2.5 jednostki, a kieliszek wina to ok. 2 jednostki. WHO zaleca, aby mężczyźni nie przekraczali 4 jednostek dziennie, a kobiety 2 jednostek, zachowując co najmniej 2 dni w tygodniu całkowitej abstynencji.</p>
+
+            <h2>Przykłady obliczeń</h2>
+            <p>Przykład: Pół litra piwa 5%.</p>
+            <ol>
+                <li>Objętość alkoholu: 500 ml * 0.05 = 25 ml.</li>
+                <li>Masa alkoholu: 25 ml * 0.8 (gęstość etanolu) = 20 gramów.</li>
+                <li>Kalorie z samego alkoholu: 20 g * 7 kcal = 140 kcal.</li>
+                <li><strong>Uwaga:</strong> Piwo zawiera też cukry, więc realna liczba kalorii w 0.5L piwa to ok. 250 kcal.</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Kalkulatorze Alkoholu</h2>
+                <div class="faq-item">
+                    <h3>Czy "procenty" na butelce to waga czy objętość?</h3>
+                    <p>Wartość podawana na etykietach to zazwyczaj procent objętościowy (% vol). Oznacza to, ile mililitrów etanolu znajduje się w 100 ml napoju.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Dlaczego po alkoholu szybciej tyjemy?</h3>
+                    <p>Oprócz wysokiej kaloryczności, alkohol spowalnia utlenianie tłuszczów w organizmie, ponieważ wątroba traktuje go jako toksynę i zajmuje się jego spalaniem w pierwszej kolejności.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Który alkohol ma najmniej kalorii?</h3>
+                    <p>Najmniej kalorii w przeliczeniu na "procenty" ma zazwyczaj wytrawne białe wino oraz czysta wódka z bezkalorycznym napojem (np. wodą gazowaną). Najwięcej mają słodkie likiery i drinki z syropami.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-promili.html" class="related-link">Kalkulator Promili</a>
+                <a href="kalkulator-kalorii.html" class="related-link">Spalanie Kalorii</a>
+                <a href="kalkulator-zapotrzebowania-kalorycznego.html" class="related-link">Zapotrzebowanie (BMR)</a>
+                <a href="kalkulator-bmi.html" class="related-link">Kalkulator BMI</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Twoje zdrowie, Twój wybór.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calculateAlcohol() {
+            const vol = parseFloat(document.getElementById('volume').value);
+            const perc = parseFloat(document.getElementById('drink-type').value) / 100;
+
+            if (!CalcUI.validate(['volume'])) return;
+
+            const grams = vol * perc * 0.8;
+            const kcal = grams * 7;
+            
+            // Adding extra kcal for sugars based on type
+            const sugarKcal = (perc < 0.1) ? (vol * 0.2) : (vol * 0.4); 
+
+            document.getElementById('grams-res').textContent = CalcUI.formatNumber(grams, 1) + " g";
+            document.getElementById('alcohol-kcal').textContent = Math.round(kcal + sugarKcal) + " kcal";
+            document.querySelector('.result-box').classList.add('active');
+        }
+    </script>
+</body>
+</html>

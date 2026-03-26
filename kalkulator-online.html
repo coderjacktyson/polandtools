@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Online - Szybki i darmowy kalkulator w przeglądarce | CalcPremium</title>
+    <meta name="description" content="Potrzebujesz szybko coś policzyć? Nasz prosty kalkulator online to idealne narzędzie do codziennych działań. Dodawanie, mnożenie i dzielenie za darmo.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .simple-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+        .simple-btn { padding: 1.5rem; border: 1px solid var(--border); border-radius: 12px; background: white; font-size: 1.25rem; font-weight: 700; cursor: pointer; transition: background 0.2s; }
+        .simple-btn:hover { background: #f8fafc; }
+        .simple-btn.op { background: #eff6ff; color: var(--primary); }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Kalkulator Online</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card" style="max-width: 400px;">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor" style="color: var(--primary);"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            </div>
+            <h1>Kalkulator Online</h1>
+            <div class="display" id="display" style="font-size: 2rem; padding: 1.5rem; background: #f1f5f9; color: #1e293b; text-align: right; border-radius: 12px; margin-bottom: 1rem; border: 2px solid var(--border);">0</div>
+            <div class="simple-grid">
+                <button class="simple-btn op" style="grid-column: span 3;" onclick="res()">C</button>
+                <button class="simple-btn op" onclick="app('/')">÷</button>
+                
+                <button class="simple-btn" onclick="app('7')">7</button>
+                <button class="simple-btn" onclick="app('8')">8</button>
+                <button class="simple-btn" onclick="app('9')">9</button>
+                <button class="simple-btn op" onclick="app('*')">×</button>
+                
+                <button class="simple-btn" onclick="app('4')">4</button>
+                <button class="simple-btn" onclick="app('5')">5</button>
+                <button class="simple-btn" onclick="app('6')">6</button>
+                <button class="simple-btn op" onclick="app('-')">-</button>
+                
+                <button class="simple-btn" onclick="app('1')">1</button>
+                <button class="simple-btn" onclick="app('2')">2</button>
+                <button class="simple-btn" onclick="app('3')">3</button>
+                <button class="simple-btn op" onclick="app('+')">+</button>
+                
+                <button class="simple-btn" style="grid-column: span 2;" onclick="app('0')">0</button>
+                <button class="simple-btn" onclick="app('.')">.</button>
+                <button class="simple-btn op" onclick="sol()" style="background: var(--primary); color: white;">=</button>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Online?</h2>
+            <p>Kalkulator online to wirtualny odpowiednik tradycyjnego kalkulatora biurkowego, który pozwala na wykonywanie podstawowych operacji matematycznych bez konieczności instalowania jakiegokolwiek oprogramowania. Jest on dostępny z poziomu każdej nowoczesnej przeglądarki internetowej, co czyni go niezwykle uniwersalnym narzędziem do pracy, nauki oraz codziennych sprawunków. Nasz kalkulator stawia na prostotę – nie znajdziesz tu skomplikowanych wzorów, lecz niezawodny interfejs do szybkiego liczenia.</p>
+
+            <h2>Jak działają proste operacje arytmetyczne?</h2>
+            <p>Cztery podstawowe działania: dodawanie, odejmowanie, mnożenie i dzielenie, stanowią bazę dla niemal wszystkich obliczeń, z którymi spotykamy się w życiu. Współczesne mikroprocesory potrafią wykonać te działania w miliardowych częściach sekundy, co gwarantuje, że wynik na ekranie Twojego urządzenia pojawia się natychmiast po naciśnięciu przycisku "=". </p>
+
+            <h2>Zastosowania uniwersalnego kalkulatora w przeglądarce</h2>
+            <ul>
+                <li><strong>Weryfikacja rachunków:</strong> Sprawdź, czy kwota na paragonie ze sklepu zgadza się z Twoimi wyliczeniami.</li>
+                <li><strong>Pomoc w zadaniach domowych:</strong> Szybko zweryfikuj wynik dodawania pisemnego czy mnożenia dużych liczb.</li>
+                <li><strong>Planowanie zakupów:</strong> Zsumuj ceny produktów przed udaniem się do kasy, aby uniknąć niespodzianek przy płatności.</li>
+                <li><strong>Proste rozliczenia:</strong> Podziel koszt wspólnego obiadu czy rachunku za prąd między domowników.</li>
+            </ul>
+
+            <h2>Zalety korzystania z kalkulatora cyfrowego</h2>
+            <p>Korzystanie z narzędzia online ma wiele przewag nad kalkulatorem wbudowanym w telefon czy system operacyjny:</p>
+            <ul>
+                <li><strong>Brak instalacji:</strong> Wystarczy wejść na stronę i liczyć.</li>
+                <li><strong>Dostępność:</strong> Działa na każdym urządzeniu (Windows, Mac, Android, iOS).</li>
+                <li><strong>Duże przyciski:</strong> Nasz design sprzyja obsłudze dotykowej na smartfonach oraz wygodnemu klikaniu myszką na komputerze.</li>
+            </ul>
+
+            <h2>Przykłady obliczeń</h2>
+            <p>Przykład: Chcesz sprawdzić, czy stać Cię na trzy produkty po 24,50 zł każdy.</p>
+            <ol>
+                <li>Wpisz "3" na klawiaturze.</li>
+                <li>Naciśnij znak mnożenia (×).</li>
+                <li>Wpisz "24.50".</li>
+                <li>Naciśnij "=".</li>
+                <li><strong>Wynik:</strong> 73,50 zł.</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Kalkulatorze Online</h2>
+                <div class="faq-item">
+                    <h3>Czy mogę używać kalkulatora klawiaturą?</h3>
+                    <p>Oczywiście! Nasze narzędzie reaguje na klawisze numeryczne oraz Enter, co znacznie przyspiesza pracę osobom sprawnie piszącym na komputerze.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czy kalkulator zapisuje moje obliczenia?</h3>
+                    <p>Obecnie wyświetlamy tylko aktualny wynik. Ze względów prywatności nie przechowujemy Twojej historii obliczeń na serwerze.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Dlaczego wynik dzielenia przez zero to "Infinity"?</h3>
+                    <p>W matematyce dzielenie przez zero jest operacją niezdefiniowaną, co w informatyce jest zazwyczaj reprezentowane przez symbol nieskończoności.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-naukowy.html" class="related-link">Kalkulator Naukowy</a>
+                <a href="kalkulator-procentowy.html" class="related-link">Kalkulator Procentowy</a>
+                <a href="kalkulator-dni.html" class="related-link">Różnica Dat</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Licz mądrze i szybko.</p>
+    </footer>
+
+    <script>
+        let exp = "";
+        const d = document.getElementById('display');
+        function app(c) { exp += c; up(); }
+        function up() { d.textContent = exp || "0"; }
+        function res() { exp = ""; up(); }
+        function sol() { 
+            try { 
+                exp = String(eval(exp)); up(); 
+            } catch(e) { d.textContent = "Błąd"; exp = ""; } 
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Procentowy - Szybkie obliczanie procentów | CalcPremium</title>
+    <meta name="description" content="Nasz kalkulator procentowy pomoże Ci szybko obliczyć procent z liczby, o ile procent wzrosła cena oraz o ile spadła wartość. Prosty i skuteczny!">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Kalkulator Procentowy</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-percent" style="color: var(--primary);"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>
+            </div>
+            <h1>Kalkulator Procentowy</h1>
+            
+            <div style="margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
+                <label>1. Ile to jest X procent z liczby Y?</label>
+                <div style="display: flex; gap: 0.5rem; align-items: center; margin-top: 0.5rem;">
+                    <input type="number" id="p1-percent" style="width: 80px;" placeholder="%">
+                    <span>% z</span>
+                    <input type="number" id="p1-value" placeholder="liczba">
+                    <button class="btn-calc" onclick="calcP1()" style="width: auto; padding: 0.5rem 1rem;">Oblicz</button>
+                    <div id="p1-res" style="font-weight: 800; color: var(--primary); min-width: 50px;">-</div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
+                <label>2. Jakim procentem liczby Y jest liczba X?</label>
+                <div style="display: flex; gap: 0.5rem; align-items: center; margin-top: 0.5rem;">
+                    <input type="number" id="p2-x" placeholder="X">
+                    <span>jest</span>
+                    <input type="number" id="p2-y" placeholder="Y">
+                    <button class="btn-calc" onclick="calcP2()" style="width: auto; padding: 0.5rem 1rem;">Oblicz</button>
+                    <div id="p2-res" style="font-weight: 800; color: var(--primary); min-width: 50px;">-</div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label>3. O ile procent zmieniła się wartość (X do Y)?</label>
+                <div style="display: flex; gap: 0.5rem; align-items: center; margin-top: 0.5rem;">
+                    <input type="number" id="p3-old" placeholder="Stara">
+                    <span>na</span>
+                    <input type="number" id="p3-new" placeholder="Nowa">
+                    <button class="btn-calc" onclick="calcP3()" style="width: auto; padding: 0.5rem 1rem;">Oblicz</button>
+                    <div id="p3-res" style="font-weight: 800; color: var(--primary); min-width: 50px;">-</div>
+                </div>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Procentowy?</h2>
+            <p>Kalkulator procentowy to uniwersalne narzędzie matematyczne, które znajduje zastosowanie w niemal każdej dziedzinie życia – od zakupów w supermarkecie (obliczanie rabatów), przez finanse osobiste (analiza zysków z lokat), aż po statystykę i naukę. Procent to sposób wyrażenia liczby jako ułamka o mianowniku 100, co pozwala na łatwe porównywanie różnych wartości w tej samej skali.</p>
+
+            <h2>Jak działa Kalkulator Procentowy?</h2>
+            <p>Nasz kalkulator został podzielony na trzy najczęściej spotykane scenariusze obliczeniowe, aby maksymalnie uprościć Twoją pracę:</p>
+            <ul>
+                <li><strong>Wartość procentowa:</strong> Oblicza konkretną kwotę na podstawie procentu. Wzór: (P/100) * Y.</li>
+                <li><strong>Udział procentowy:</strong> Oblicza, jaką część całości stanowi dana liczba. Wzór: (X/Y) * 100%.</li>
+                <li><strong>Zmiana procentowa:</strong> Oblicza wzrost lub spadek między dwiema wartościami. Wzór: ((Nowa-Stara)/Stara) * 100%.</li>
+            </ul>
+
+            <h2>Zasady obliczania procentów w głowie</h2>
+            <p>Chociaż nasz kalkulator jest szybki, warto znać kilka trików na szybkie liczenie w pamięci. Przykładowo, aby obliczyć 10% z dowolnej liczby, wystarczy przesunąć przecinek o jedno miejsce w lewo (10% z 250 to 25). Chcąc obliczyć 1%, przesuwamy przecinek o dwa miejsca (1% z 250 to 2,5). Znajomość tych podstaw ułatwia codzienne podejmowanie decyzji konsumenckich.</p>
+
+            <h2>Zastosowania Kalkulatora Procentowego</h2>
+            <p>Najczęstsze sytuacje, w których przyda Ci się nasze narzędzie:</p>
+            <ul>
+                <li><strong>Wyprzedaże:</strong> Obliczanie końcowej ceny produktu po rabacie 20% czy 30%.</li>
+                <li><strong>Podwyżki płac:</strong> Sprawdzanie, o ile faktycznie wzrośnie Twoje wynagrodzenie po otrzymaniu bonusu procentowego.</li>
+                <li><strong>Analiza danych:</strong> Porównywanie wyników sprzedaży rok do roku w ujęciu procentowym.</li>
+                <li><strong>Kuchnia:</strong> Przeliczanie proporcji składników w przepisach, jeśli chcesz przygotować większą lub mniejszą porcję.</li>
+            </ul>
+
+            <h2>Przykłady obliczeń</h2>
+            <p>Przykład 1: Sklep oferuje 15% rabatu na buty za 300 zł. Ile zaoszczędzisz?</p>
+            <ol>
+                <li>15 / 100 = 0,15.</li>
+                <li>300 * 0,15 = 45 zł.</li>
+                <li><strong>Wynik:</strong> Zaoszczędzisz 45 zł, a buty kupisz za 255 zł.</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Kalkulatorze Procentowym</h2>
+                <div class="faq-item">
+                    <h3>Czy 100% to zawsze całość?</h3>
+                    <p>W ujęciu statystycznym tak, ale w ujęciu zmiany (np. wzrostu cen) wartość może wynosić 200%, 500% i więcej, jeśli końcowa liczba wielokrotnie przewyższa początkową.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Jak zamienić procent na ułamek zwykły?</h3>
+                    <p>Wystarczy wpisać procent w liczniku i 100 w mianowniku, a następnie skrócić ułamek. Np. 25% = 25/100 = 1/4.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czym są punkty procentowe?</h3>
+                    <p>Punkt procentowy (p.p.) to jednostka różnicy między dwiema wartościami wyrażonymi w procentach. Jeśli stopa bezrobocia wzrosła z 10% do 12%, to wzrosła o 2 punkty procentowe (ale o 20 procent!).</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-odsetek.html" class="related-link">Kalkulator Odsetek</a>
+                <a href="kalkulator-lokat.html" class="related-link">Kalkulator Lokat</a>
+                <a href="kalkulator-promili.html" class="related-link">Kalkulator Promili</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Matematyka na wyciągnięcie ręki.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calcP1() {
+            const p = parseFloat(document.getElementById('p1-percent').value);
+            const v = parseFloat(document.getElementById('p1-value').value);
+            if (p >= 0 && v >= 0) {
+                const res = (p / 100) * v;
+                document.getElementById('p1-res').textContent = CalcUI.formatNumber(res, 2);
+            }
+        }
+        function calcP2() {
+            const x = parseFloat(document.getElementById('p2-x').value);
+            const y = parseFloat(document.getElementById('p2-y').value);
+            if (x >= 0 && y > 0) {
+                const res = (x / y) * 100;
+                document.getElementById('p2-res').textContent = CalcUI.formatNumber(res, 2) + "%";
+            }
+        }
+        function calcP3() {
+            const oldV = parseFloat(document.getElementById('p3-old').value);
+            const newV = parseFloat(document.getElementById('p3-new').value);
+            if (oldV > 0 && newV >= 0) {
+                const res = ((newV - oldV) / oldV) * 100;
+                const sign = res > 0 ? "+" : "";
+                document.getElementById('p3-res').textContent = sign + CalcUI.formatNumber(res, 2) + "%";
+            }
+        }
+    </script>
+</body>
+</html>

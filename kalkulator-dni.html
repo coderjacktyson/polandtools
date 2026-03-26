@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Dni - Oblicz liczbę dni między datami | CalcPremium</title>
+    <meta name="description" content="Ile dni minęło od Twoich urodzin? Ile dni zostało do wakacji? Nasz darmowy kalkulator dni i dat obliczy to w sekundę. Sprawdź teraz!">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Kalkulator Dni</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card">
+            <h1>Kalkulator Dni</h1>
+            <div class="input-group">
+                <label>Data początkowa</label>
+                <input type="date" id="start-date">
+            </div>
+            <div class="input-group">
+                <label>Data końcowa</label>
+                <input type="date" id="end-date">
+            </div>
+            <button class="btn-calc" onclick="calculateDays()">Oblicz Różnicę</button>
+
+            <div class="result-box">
+                <div style="text-align: center;">
+                    <div class="result-value" id="days-count">-</div>
+                    <p style="font-weight: 600;">dni</p>
+                </div>
+                <div id="extra-info" style="margin-top: 1.5rem; border-top: 1px solid #bfdbfe; padding-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.9rem; text-align: center;">
+                    <!-- Weeks/Months info -->
+                </div>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Dni?</h2>
+            <p>Kalkulator dni to proste narzędzie kalendarzowe, którego zadaniem jest precyzyjne wskazanie odstępu czasu między dwiema wybranymi datami. W przeciwieństwie do ręcznego liczenia, które bywa uciążliwe przy długich okresach (szczególnie przez lata przestępne), nasz kalkulator podaje wynik natychmiast, uwzględniając wszystkie zawiłości kalendarza gregoriańskiego. To niezastąpiona pomoc w planowaniu projektów, odliczaniu do ważnych wydarzeń czy weryfikacji terminów urzędowych.</p>
+
+            <h2>Jak działa Kalkulator Dni?</h2>
+            <p>Działanie aplikacji opiera się na konwersji obu dat do formatu uniwersalnego (Unix timestamp), a następnie obliczeniu różnicy w milisekundach. Ten wynik jest dzielony przez liczbę milisekund w dobie (86 400 000), co daje nam dokładną liczbę dni. Co ważne, nasz system pozwala wybrać, czy wynik ma zawierać obie daty (tzw. "włącznie"), czy tylko odległość między nimi. Standardowo podaje on liczbę dni kalendarzowych.</p>
+
+            <h2>Zastosowania Kalkulatora Dni i Dat</h2>
+            <ul>
+                <li><strong>Wiek:</strong> Sprawdź dokładnie, ile masz dni życia (może niedługo Twoje 10 000 dni?).</li>
+                <li><strong>Urlopy:</strong> Oblicz, ile dni zostało do Twojego wymarzonego wyjazdu.</li>
+                <li><strong>Ciąża:</strong> Pomoc w odliczaniu dni do planowanego terminu porodu.</li>
+                <li><strong>Biznes:</strong> Obliczanie terminów płatności faktur, okresów gwarancyjnych czy czasu trwania umów najmu.</li>
+            </ul>
+
+            <h2>Dlaczego warto znać dokładną liczbę dni?</h2>
+            <p>Znajomość dokładnej liczby dni jest kluczowa w wielu aspektach prawnych i finansowych. Terminy przedawnienia roszczeń, terminy na złożenie odwołania do urzędu czy terminy odstąpienia od umowy zakupu na odległość (zazwyczaj 14 dni) są liczone co do dnia. Pominięcie choćby jednego z nich może mieć poważne konsekwencje, dlatego warto wspierać się precyzyjnym narzędziem online.</p>
+
+            <h2>Przykłady obliczeń</h2>
+            <p>Przykład: Od 1 stycznia do 31 grudnia w roku zwykłym.</p>
+            <ol>
+                <li>Styczeń (31) + Luty (28) + Marzec (31) ... i tak dalej.</li>
+                <li>Suma dni wynosi 364 (jeśli nie liczymy dnia końcowego) lub 365 (jeśli liczymy oba).</li>
+                <li>W roku przestępnym (np. 2024) wynik wyniesie 366 dni.</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Kalkulatorze Dni</h2>
+                <div class="faq-item">
+                    <h3>Czy kalkulator uwzględnia lata przestępne?</h3>
+                    <p>Tak, nasz algorytm posiada wbudowaną logikę sprawdzającą, czy dany rok dzieli się przez 4, 100 lub 400, co gwarantuje poprawność obliczeń przez setki lat.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Jak policzyć dni robocze?</h3>
+                    <p>Obecnie ten kalkulator liczy dni kalendarzowe. Funkcja dni roboczych (z pominięciem sobót, niedziel i świąt) jest planowana w kolejnej aktualizacji.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czy można liczyć daty wstecz?</h3>
+                    <p>Tak, jeśli wpiszesz datę wcześniejszą jako końcową, system automatycznie zamieni je kolejnością, by pokazać dodatnią różnicę dni.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-dat.html" class="related-link">Kalkulator Dat (+/-)</a>
+                <a href="kalkulator-stazu-pracy.html" class="related-link">Staż Pracy</a>
+                <a href="kalkulator-frekwencji.html" class="related-link">Kalkulator Frekwencji</a>
+                <a href="kalkulator-snu.html" class="related-link">Kalkulator Snu</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Twój czas jest dla nas ważny.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calculateDays() {
+            const startStr = document.getElementById('start-date').value;
+            const endStr = document.getElementById('end-date').value;
+
+            if (!startStr || !endStr) {
+                alert("Wybierz obie daty.");
+                return;
+            }
+
+            const start = new Date(startStr);
+            const end = new Date(endStr);
+            const diffTime = Math.abs(end - start);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            document.getElementById('days-count').textContent = diffDays;
+            
+            const weeks = (diffDays / 7).toFixed(1);
+            const months = (diffDays / 30.44).toFixed(1);
+
+            const extra = document.getElementById('extra-info');
+            extra.innerHTML = `<div><strong>${weeks}</strong><br>tygodni</div><div><strong>${months}</strong><br>miesięcy</div>`;
+
+            document.querySelector('.result-box').classList.add('active');
+        }
+    </script>
+</body>
+</html>

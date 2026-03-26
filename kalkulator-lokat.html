@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Lokat - Oblicz zysk po podatku Belki | CalcPremium</title>
+    <meta name="description" content="Sprawdź ile realnie zarobisz na lokacie bankowej. Odejmujemy podatek Belki (19%) automatycznie. Najdokładniejszy kalkulator oszczędności online.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Lokaty</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-database" style="color: var(--primary);"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+            </div>
+            <h1>Kalkulator Lokat</h1>
+            <div class="input-group">
+                <label>Kwota lokaty (zł)</label>
+                <input type="number" id="deposit" placeholder="np. 20000">
+            </div>
+            <div class="input-group">
+                <label>Oprocentowanie (%)</label>
+                <input type="number" id="rate" placeholder="np. 6.5" step="0.1">
+            </div>
+            <div class="input-group">
+                <label>Czas trwania (miesiące)</label>
+                <input type="number" id="months" placeholder="np. 12">
+            </div>
+            <div class="input-group">
+                <label>Kapitalizacja</label>
+                <select id="compounding">
+                    <option value="0">Na koniec okresu</option>
+                    <option value="1">Miesięczna</option>
+                    <option value="3">Kwartalna</option>
+                </select>
+            </div>
+            <button class="btn-calc" onclick="calculateDeposit()">Oblicz Zysk Netto</button>
+
+            <div class="result-box">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div style="text-align: center;">
+                        <small>Zysk brutto</small>
+                        <div class="result-value" id="gross-result" style="font-size: 1.5rem; color: var(--text-muted);">-</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <small>Zysk na rękę (Netto)</small>
+                        <div class="result-value" id="net-result" style="font-size: 1.5rem; color: #16a34a;">-</div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                    Wynik uwzględnia 19% podatek od zysków kapitałowych.
+                </p>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Lokat?</h2>
+            <p>Kalkulator lokat to profesjonalne narzędzie finansowe, które pozwala precyzyjnie obliczyć rentowność oszczędności ulokowanych w banku. W odróżnieniu od zwykłego kalkulatora procentowego, nasz system uwzględnia kluczowy aspekt polskiego systemu podatkowego – tzw. podatek Belki. Dzięki niemu dowiesz się nie tylko, ile wyniosą naliczone odsetki, ale przede wszystkim, jaka kwota faktycznie wpłynie na Twoje konto po zakończeniu okresu lokaty.</p>
+
+            <h2>Jak działa Kalkulator Lokat?</h2>
+            <p>Obliczenie zysku z lokaty przebiega w kilku etapach:</p>
+            <ol>
+                <li>Najpierw system wylicza odsetki brutto na podstawie kwoty, czasu trwania (w miesiącach) i oprocentowania rocznego.</li>
+                <li>Jeśli wybrano kapitalizację częstszą niż na koniec okresu, stosowany jest wzór na procent składany.</li>
+                <li>Od wyliczonej kwoty odsetek brutto odejmowane jest 19% podatku od zysków kapitałowych.</li>
+                <li>Ostatnim krokiem jest zsumowanie kapitału początkowego i odsetek netto.</li>
+            </ol>
+
+            <h2>Zasady podatku Belki</h2>
+            <p>Od 2002 roku w Polsce obowiązuje zryczałtowany podatek dochodowy od osób fizycznych od przychodów z kapitałów pieniężnych. Wynosi on 19% i jest pobierany automatycznie przez bank. Oznacza to, że każda złotówka zarobiona na lokacie jest pomniejszana o 19 groszy, które bank odprowadza do fiskusa. Nasz kalkulator wykonuje to działanie za Ciebie, dając realny obraz zysku.</p>
+
+            <h2>Dlaczego warto porównywać kapitalizację?</h2>
+            <p>Częstsza kapitalizacja (np. miesięczna zamiast rocznej) jest korzystniejsza dla oszczędzającego, ponieważ odsetki wypracowane w pierwszym miesiącu same zarabiają w kolejnych. Chociaż przy niskich kwotach różnice są niewielkie, to przy większym kapitale lub dłuższym czasie, magia procentu składanego staje się wyraźnie odczuwalna.</p>
+
+            <h2>Przykłady obliczeń</h2>
+            <p>Załóżmy lokatę 10 000 zł na 12 miesięcy przy 8% oprocentowaniu brutto:</p>
+            <ol>
+                <li>Odsetki brutto: 10 000 * 0,08 = 800 zł.</li>
+                <li>Podatek Belki (19%): 800 * 0,19 = 152 zł.</li>
+                <li><strong>Zysk netto:</strong> 800 - 152 = 648 zł.</li>
+                <li>Daje to realne oprocentowanie na poziomie ok. 6,48%.</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Kalkulatorze Lokat</h2>
+                <div class="faq-item">
+                    <h3>Czy bank sam odprowadza podatek?</h3>
+                    <p>Tak, w przypadku lokat i kont oszczędnościowych w polskich bankach, instytucja ta pełni rolę płatnika – otrzymujesz na konto kwotę już po opodatkowaniu.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czy można uniknąć podatku Belki?</h3>
+                    <p>Obecnie jedynym sposobem na legalne uniknięcie tego podatku w Polsce jest korzystanie z kont emerytalnych typu IKE lub IKZE w ramach określonych limitów.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Co jest lepsze: lokata czy konto oszczędnościowe?</h3>
+                    <p>Lokata zazwyczaj oferuje wyższe, stałe oprocentowanie, ale zamraża środki. Konto oszczędnościowe daje większą elastyczność, ale jego oprocentowanie może ulec zmianie w dowolnym momencie.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-odsetek.html" class="related-link">Kalkulator Odsetek</a>
+                <a href="kalkulator-procentowy.html" class="related-link">Kalkulator Procentowy</a>
+                <a href="kalkulator-leasingowy.html" class="related-link">Kalkulator Leasingowy</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Twoje oszczędności pracują efektywnie.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calculateDeposit() {
+            const deposit = parseFloat(document.getElementById('deposit').value);
+            const rate = parseFloat(document.getElementById('rate').value) / 100;
+            const months = parseFloat(document.getElementById('months').value);
+            const cap = parseInt(document.getElementById('compounding').value);
+
+            if (!CalcUI.validate(['deposit', 'rate', 'months'])) return;
+
+            let grossInterest;
+            if (cap === 0) {
+                // Simple interest for period
+                grossInterest = deposit * rate * (months / 12);
+            } else {
+                // Compound: cap is frequency per month? No, let's redefine cap: 1=monthly, 3=quarterly
+                const n = 12 / cap; // how many times per year
+                const t = months / 12;
+                grossInterest = (deposit * Math.pow((1 + (rate / n)), (n * t))) - deposit;
+            }
+
+            const tax = grossInterest * 0.19;
+            const netInterest = grossInterest - tax;
+
+            document.getElementById('gross-result').textContent = CalcUI.formatNumber(grossInterest, 2) + " zł";
+            document.getElementById('net-result').textContent = "+" + CalcUI.formatNumber(netInterest, 2) + " zł";
+            document.querySelector('.result-box').classList.add('active');
+        }
+    </script>
+</body>
+</html>

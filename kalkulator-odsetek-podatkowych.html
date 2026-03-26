@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Odsetek Podatkowych 2024 - Zaległości US | CalcPremium</title>
+    <meta name="description" content="Oblicz odsetki od zaległości podatkowych wobec Urzędu Skarbowego. Aktualna stawka 14,5%. Sprawdź ile zapłacisz za spóźnienie w podatkach.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Odsetki Podatkowe</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card">
+            <h1>Odsetki Podatkowe</h1>
+            <div class="input-group">
+                <label>Kwota zaległości (zł)</label>
+                <input type="number" id="debt" placeholder="np. 5000">
+            </div>
+            <div class="input-group">
+                <label>Termin płatności</label>
+                <input type="date" id="due-date">
+            </div>
+            <div class="input-group">
+                <label>Data faktycznej zapłaty</label>
+                <input type="date" id="pay-date">
+            </div>
+            <div class="input-group">
+                <label>Stawka odsetek (%)</label>
+                <input type="number" id="tax-rate" value="14.5" step="0.5">
+            </div>
+            <button class="btn-calc" onclick="calculateTaxInterest()">Oblicz Odsetki</button>
+
+            <div class="result-box">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div style="text-align: center;">
+                        <small>Liczba dni zwłoki</small>
+                        <div class="result-value" id="days-result" style="font-size: 1.5rem;">-</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <small>Kwota odsetek</small>
+                        <div class="result-value" id="tax-interest-result" style="font-size: 1.5rem; color: #ef4444;">-</div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                    Odsetki poniżej 8,70 zł są umarzane z mocy prawa (nie wpłaca się ich).
+                </p>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Odsetek Podatkowych?</h2>
+            <p>Kalkulator odsetek podatkowych to wyspecjalizowane narzędzie służące do wyliczania należności ubocznych powstałych w wyniku nieterminowej zapłaty podatków do Urzędu Skarbowego. Każdy podatnik w Polsce ma obowiązek samodzielnego naliczenia i wpłacenia odsetek za zwłokę, jeśli termin płatności danego podatku (PIT, CIT, VAT) minął. Nasz kalkulator automatyzuje ten proces, uwzględniając aktualne stawki ogłaszane w Monitorze Polskim.</p>
+
+            <h2>Jak działa Kalkulator Odsetek Podatkowych?</h2>
+            <p>Naliczanie odsetek podatkowych odbywa się według konkretnego wzoru określonego w Ordynacji Podatkowej. Odsetki liczone są za każdy dzień zwłoki, poczynając od dnia następującego po terminie płatności, aż do dnia zapłaty włącznie. </p>
+            <p><strong>Wzór: (Kwota zaległości * Liczba dni zwłoki * Stawka odsetek) / 365.</strong> Wynik końcowy należy zaokrąglić do pełnych złotych. Bardzo ważne jest wskazanie poprawnego terminu płatności, ponieważ od niego system wylicza precyzyjną liczbę dni spóźnienia.</p>
+
+            <h2>Zalety korzystania z naszego narzędzia</h2>
+            <ul>
+                <li><strong>Zgodność z przepisami:</strong> Nasz kalkulator pozwala na szybkie uzyskanie kwoty, którą należy przelać na mikrorachunek podatkowy.</li>
+                <li><strong>Oszczędność czasu:</strong> Nie musisz ręcznie liczyć dni na kalendarzu – system zrobi to za Ciebie.</li>
+                <li><strong>Pewność finansowa:</strong> Unikasz błędów w zaokrągleniach, które mogłyby skutkować powstaniem niedopłaty i dalszych sankcji karno-skarbowych.</li>
+            </ul>
+
+            <h2>Zasada umarzania niskich odsetek</h2>
+            <p>Warto pamiętać o istotnym przepisie: jeśli wyliczona kwota odsetek za zwłokę nie przekracza trzykrotności wartości opłaty pobieranej przez Pocztę Polską za nadanie listu poleconego (obecnie jest to kwota 8,70 zł), to odsetek tych nie wpłaca się. Nasz kalkulator poinformuje Cię, jeśli Twoja należność mieści się w tym limicie.</p>
+
+            <h2>Przykłady obliczeń</h2>
+            <p>Załóżmy, że zalegasz z zapłatą 2000 zł podatku VAT przez 30 dni przy stawce 14,5%:</p>
+            <ol>
+                <li>Mnożymy kwotę przez stawkę i dni: 2000 * 0.145 * 30 = 8700.</li>
+                <li>Dzielimy przez 365 dni w roku: 8700 / 365 = 23,83 zł.</li>
+                <li><strong>Wynik:</strong> Po zaokrągleniu należy wpłacić 24 zł odsetek.</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Odsetkach Podatkowych</h2>
+                <div class="faq-item">
+                    <h3>Czy stawka odsetek podatkowych może się zmienić?</h3>
+                    <p>Tak, stawka ta jest powiązana ze stopą lombardową NBP i wynosi jej dwukrotność plus 2 punkty procentowe (jednak nie mniej niż 8%).</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czy odsetki nalicza się w soboty i niedziele?</h3>
+                    <p>Tak, odsetki podatkowe naliczane są za każdy dzień kalendarzowy, w tym również za dni wolne od pracy i święta.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Co jeśli termin płatności wypada w sobotę?</h3>
+                    <p>zgodnie z prawem, jeśli ostatni dzień terminu płatności przypada na sobotę lub dzień ustawowo wolny, termin przesuwa się na następny dzień roboczy.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-odsetek-ustawowych.html" class="related-link">Odsetki Ustawowe</a>
+                <a href="kalkulator-odsetek.html" class="related-link">Kalkulator Odsetek</a>
+                <a href="kalkulator-lokat.html" class="related-link">Kalkulator Lokat</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Twoje finanse pod kontrolą.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calculateTaxInterest() {
+            const debt = parseFloat(document.getElementById('debt').value);
+            const dueDateStr = document.getElementById('due-date').value;
+            const payDateStr = document.getElementById('pay-date').value;
+            const rate = parseFloat(document.getElementById('tax-rate').value) / 100;
+
+            if (!debt || !dueDateStr || !payDateStr) {
+                alert("Wypełnij wszystkie pola dat i kwotę.");
+                return;
+            }
+
+            const dueDate = new Date(dueDateStr);
+            const payDate = new Date(payDateStr);
+
+            const diffTime = payDate - dueDate;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays <= 0) {
+                alert("Data zapłaty musi być późniejsza niż termin płatności.");
+                return;
+            }
+
+            const interest = (debt * diffDays * rate) / 365;
+            const roundedInterest = Math.round(interest);
+
+            document.getElementById('days-result').textContent = diffDays;
+            document.getElementById('tax-interest-result').textContent = CalcUI.formatNumber(roundedInterest, 0) + " zł";
+            document.querySelector('.result-box').classList.add('active');
+        }
+    </script>
+</body>
+</html>

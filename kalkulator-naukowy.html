@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Naukowy Online - Zaawansowane obliczenia | CalcPremium</title>
+    <meta name="description" content="Darmowy kalkulator naukowy w przeglądarce. Funkcje trygonometryczne, logarytmy, potęgi i pierwiastki. Wszystko czego potrzebujesz do nauki i inżynierii.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .sci-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+        .sci-btn { padding: 1rem; border: 1px solid var(--border); border-radius: 8px; background: white; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .sci-btn:hover { background: #f1f5f9; }
+        .sci-btn.op { background: #eff6ff; color: var(--primary); }
+        .display { width: 100%; padding: 1rem; background: #1e293b; color: #60a5fa; text-align: right; font-family: monospace; font-size: 1.5rem; border-radius: 8px; margin-bottom: 1rem; overflow: hidden; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Kalkulator Naukowy</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card" style="max-width: 500px;">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-cpu" style="color: var(--primary);"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+            </div>
+            <h1>Kalkulator Naukowy</h1>
+            <div class="display" id="sci-display">0</div>
+            <div class="sci-grid">
+                <button class="sci-btn op" onclick="clearDisplay()">C</button>
+                <button class="sci-btn op" onclick="append('(')">(</button>
+                <button class="sci-btn op" onclick="append(')')">)</button>
+                <button class="sci-btn op" onclick="backspace()">⌫</button>
+                
+                <button class="sci-btn op" onclick="sci('Math.sin')">sin</button>
+                <button class="sci-btn op" onclick="sci('Math.cos')">cos</button>
+                <button class="sci-btn op" onclick="sci('Math.tan')">tan</button>
+                <button class="sci-btn op" onclick="append('/')">÷</button>
+                
+                <button class="sci-btn" onclick="append('7')">7</button>
+                <button class="sci-btn" onclick="append('8')">8</button>
+                <button class="sci-btn" onclick="append('9')">9</button>
+                <button class="sci-btn op" onclick="append('*')">×</button>
+                
+                <button class="sci-btn" onclick="append('4')">4</button>
+                <button class="sci-btn" onclick="append('5')">5</button>
+                <button class="sci-btn" onclick="append('6')">6</button>
+                <button class="sci-btn op" onclick="append('-')">-</button>
+                
+                <button class="sci-btn" onclick="append('1')">1</button>
+                <button class="sci-btn" onclick="append('2')">2</button>
+                <button class="sci-btn" onclick="append('3')">3</button>
+                <button class="sci-btn op" onclick="append('+')">+</button>
+                
+                <button class="sci-btn" onclick="append('0')">0</button>
+                <button class="sci-btn" onclick="append('.')">.</button>
+                <button class="sci-btn op" onclick="sci('Math.sqrt')">√</button>
+                <button class="sci-btn op" onclick="solve()" style="background: var(--primary); color: white;">=</button>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Naukowy?</h2>
+            <p>Kalkulator naukowy to potężne narzędzie obliczeniowe, które wykracza poza cztery podstawowe działania arytmetyczne. Został zaprojektowany z myślą o uczniach, studentach kierunków technicznych, inżynierach oraz naukowcach, którzy w codziennej pracy mierzą się z funkcjami trygonometrycznymi, logarytmami, potęgowaniem czy liczbami zespolonymi. Nasza wersja online udostępnia te wszystkie możliwości bezpośrednio w oknie Twojej przeglądarki, bez konieczności kupowania drogiego urządzenia fizycznego.</p>
+
+            <h2>Zastosowania Kalkulatora Naukowego</h2>
+            <p>Narzędzie to jest niezastąpione w wielu dyscyplinach:</p>
+            <ul>
+                <li><strong>Fizyka i Inżynieria:</strong> Obliczanie wektorów, sił, napięć elektrycznych przy użyciu sinusa, cosinusa i tangensa.</li>
+                <li><strong>Architektura:</strong> Wyznaczanie kątów nachylenia i długości konstrukcji.</li>
+                <li><strong>Matematyka Zaawansowana:</strong> Rozwiązywanie równań, operacje na potęgach (np. e^x) oraz pierwiastkowanie dowolnego stopnia.</li>
+                <li><strong>Statystyka:</strong> Analiza dużych zbiorów danych i prawdopodobieństwa.</li>
+            </ul>
+
+            <h2>Dlaczego warto wybrać nasz Kalkulator Online?</h2>
+            <ul>
+                <li><strong>Intuicyjny interfejs:</strong> Przejrzysty układ przycisków wzorowany na profesjonalnych kalkulatorach inżynierskich.</li>
+                <li><strong>Precyzja:</strong> Obliczenia wykonywane są z wysoką dokładnością zmiennoprzecinkową.</li>
+                <li><strong>Dostępność:</strong> Działa na telefonie, tablecie i komputerze – zawsze tam, gdzie potrzebujesz wsparcia w nauce.</li>
+            </ul>
+
+            <h2>Funkcje naszego narzędzia</h2>
+            <ul>
+                <li>Podstawowe operacje: dodawanie, odejmowanie, mnożenie, dzielenie.</li>
+                <li>Funkcje trygonometryczne (sin, cos, tan).</li>
+                <li>Pierwiastkowanie i nawiasy do budowania złożonych wyrażeń.</li>
+                <li>Historia obliczeń wyświetlana na bieżąco w polu display.</li>
+            </ul>
+
+            <h2> FAQ o Kalkulatorze Naukowym</h2>
+            <div id="faq">
+                <div class="faq-item">
+                    <h3>Czy argumenty sin/cos są w stopniach czy radianach?</h3>
+                    <p>W standardowej wersji JavaScript funkcje te przyjmują radiany. Aby policzyć sinus ze stopni, pomnóż wartość przez (π / 180).</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czy mogę wpisywać ułamki?</h3>
+                    <p>Tak, używając kropki (.) jako separatora dziesiętnego oraz znaku dzielenia (÷) do zapisu ułamków zwykłych.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Co oznacza błąd "Infinity" lub "NaN"?</h3>
+                    <p>"Infinity" pojawia się przy próbie dzielenia przez zero, a "NaN" (Not a Number) przy operacjach niemożliwych, jak pierwiastek z liczby ujemnej.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-online.html" class="related-link">Zwykły Kalkulator</a>
+                <a href="kalkulator-procentowy.html" class="related-link">Kalkulator Procentowy</a>
+                <a href="kalkulator-dni.html" class="related-link">Kalkulator Dni</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Rozwiązujemy Twoje problemy matematyczne.</p>
+    </footer>
+
+    <script>
+        let expression = "";
+        function append(char) {
+            expression += char;
+            updateDisplay();
+        }
+        function updateDisplay() {
+            document.getElementById('sci-display').textContent = expression || "0";
+        }
+        function clearDisplay() {
+            expression = "";
+            updateDisplay();
+        }
+        function backspace() {
+            expression = expression.slice(0, -1);
+            updateDisplay();
+        }
+        function sci(fn) {
+            expression += fn + "(";
+            updateDisplay();
+        }
+        function solve() {
+            try {
+                const result = eval(expression);
+                expression = String(result);
+                updateDisplay();
+            } catch (e) {
+                document.getElementById('sci-display').textContent = "Error";
+                expression = "";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Frekwencji - Oblicz procent obecności | CalcPremium</title>
+    <meta name="description" content="Ile masz procent obecności w szkole lub na studiach? Sprawdź nasz darmowy kalkulator frekwencji. Dowiedz się ile godzin możesz opuścić bez konsekwencji.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Frekwencja</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users" style="color: var(--primary);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="19" cy="11" r="4"></circle></svg>
+            </div>
+            <h1>Kalkulator Frekwencji</h1>
+            <div class="input-group">
+                <label>Liczba wszystkich godzin</label>
+                <input type="number" id="total-hours" placeholder="np. 60">
+            </div>
+            <div class="input-group">
+                <label>Liczba obecności</label>
+                <input type="number" id="present-hours" placeholder="np. 50">
+            </div>
+            <button class="btn-calc" onclick="calculateFreq()">Oblicz Frekwencję</button>
+
+            <div class="result-box">
+                <div class="result-value" id="freq-res" style="font-size: 3rem;">- %</div>
+                <p id="freq-msg" style="text-align: center; font-weight: 600; margin-top: 1rem;"></p>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Frekwencji?</h2>
+            <p>Kalkulator frekwencji to proste narzędzie statystyczne, które pozwala wyliczyć procentowy udział obecności w danym procesie – najczęściej w szkole, na uczelni lub w pracy. Frekwencja jest kluczowym parametrem ocenianym przez nauczycieli i pracodawców, rzutującym na ocenę końcową z przedmiotu lub premię za dyspozycyjność. Nasz kalkulator wykonuje to zadanie błyskawicznie, informując Cię o Twojej aktualnej sytuacji.</p>
+
+            <h2>Dlaczego frekwencja w szkole jest ważna?</h2>
+            <p>W polskim systemie oświaty uczeń musi zachować co najmniej 50% obecności na danych zajęciach, aby móc być klasyfikowanym. Nieosiągnięcie tego progu (nawet przy dobrych ocenach) może skutkować koniecznością zdawania egzaminu klasyfikacyjnego. Na studiach wymagania bywają jeszcze surowsze – często regulaminy uczelni wymagają 80% lub nawet 100% obecności na ćwiczeniach i laboratoriach.</p>
+
+            <h2>Jak działa Kalkulator Frekwencji?</h2>
+            <p>Zasada działania opiera się na prostym wzorze procentowym: <strong>(Liczba obecności / Liczba wszystkich godzin) * 100%</strong>. Wynik pokazuje, jaką część całego kursu lub miesiąca pracy spędziłeś aktywnie biorąc w nim udział. Narzędzie pozwala również na szybką symulację – możesz sprawdzić, jak zmieni się Twoja frekwencja, jeśli opuścisz kolejne dwa dni lub gdy przyjdziesz na wszystkie pozostałe zajęcia do końca semestru.</p>
+
+            <h2>Zastosowania Kalkulatora Frekwencji</h2>
+            <ul>
+                <li><strong>Studenci:</strong> Sprawdzanie, czy "limit nieobecności" na danym wykładzie nie został przekroczony.</li>
+                <li><strong>Rodzice:</strong> Monitorowanie frekwencji dzieci w dzienniku elektronicznym i szybkie przeliczanie procentów.</li>
+                <li><strong>Kadry i Płace:</strong> Weryfikacja dyspozycyjności pracowników przy rozliczaniu premii frekwencyjnych.</li>
+                <li><strong>Sportowcy:</strong> Obliczanie udziału w treningach sekcji sportowej.</li>
+            </ul>
+
+            <h2>Przykłady obliczeń</h2>
+            <p>Przykład: Student ma w semestrze 30 godzin wykładów. Był na 24 z nich.</p>
+            <ol>
+                <li>Dzielimy 24 przez 30 = 0.8.</li>
+                <li>Mnożymy przez 100 = 80%.</li>
+                <li><strong>Wynik:</strong> Frekwencja wynosi 80%.</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Kalkulatorze Frekwencji</h2>
+                <div class="faq-item">
+                    <h3>Czy godziny usprawiedliwione wliczają się do frekwencji?</h3>
+                    <p>W większości systemów szkolnych frekwencja ogólna uwzględnia tylko faktyczną obecność. Jednak przy klasyfikacji brana jest pod uwagę suma obecności i nieobecności usprawiedliwionych (jako brak przesłanki do nieklasyfikowania).</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Ile godzin mogę opuścić, by mieć 50%?</h3>
+                    <p>Dokładnie połowę. Jeśli przedmiot ma 60 godzin, możesz opuścić 30. Jednak każdy kolejny opuszczony dzień sprowadza Cię poniżej bezpiecznego progu.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Dlaczego frekwencja 100% jest trudna do utrzymania?</h3>
+                    <p>Ze względu na zdarzenia losowe, choroby i sprawy urzędowe. Większość systemów motywacyjnych traktuje frekwencję powyżej 95% jako wzorową.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-stazu-pracy.html" class="related-link">Staż Pracy</a>
+                <a href="kalkulator-dni.html" class="related-link">Różnica Dat (Dni)</a>
+                <a href="kalkulator-procentowy.html" class="related-link">Kalkulator Procentowy</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Bądź tam, gdzie dzieją się ważne rzeczy.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calculateFreq() {
+            const total = parseFloat(document.getElementById('total-hours').value);
+            const present = parseFloat(document.getElementById('present-hours').value);
+
+            if (!CalcUI.validate(['total-hours', 'present-hours'])) return;
+
+            if (present > total) {
+                alert("Liczba obecności nie może być większa niż liczba wszystkich godzin.");
+                return;
+            }
+
+            const perc = (present / total) * 100;
+            CalcUI.showResult(CalcUI.formatNumber(perc, 1), "%");
+
+            const msg = document.getElementById('freq-msg');
+            if (perc >= 90) { msg.textContent = "Wzorowa obecność! Tak trzymaj."; msg.style.color = "#22c55e"; }
+            else if (perc >= 50) { msg.textContent = "Spełniasz minimum do klasyfikacji."; msg.style.color = "#eab308"; }
+            else { msg.textContent = "Twoja obecność jest zbyt niska (poniżej 50%)!"; msg.style.color = "#ef4444"; }
+        }
+    </script>
+</body>
+</html>

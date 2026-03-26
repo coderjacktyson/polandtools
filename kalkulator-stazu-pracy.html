@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Stażu Pracy - Oblicz wymiar urlopu | CalcPremium</title>
+    <meta name="description" content="Ile dni urlopu Ci przysługuje? Sprawdź swój ogólny staż pracy. Dodaj okresy zatrudnienia i wykształcenie. Szybki wynik zgodnie z kodeksem pracy.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Staż Pracy</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card" style="max-width: 700px;">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award" style="color: var(--primary);"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+            </div>
+            <h1>Kalkulator Stażu Pracy</h1>
+            <div id="periods-container">
+                <div class="input-group" style="display: grid; grid-template-columns: 1fr 1fr 40px; gap: 0.5rem;">
+                    <div>
+                        <label>Od</label>
+                        <input type="date" class="start-date">
+                    </div>
+                    <div>
+                        <label>Do</label>
+                        <input type="date" class="end-date">
+                    </div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Ukończona szkoła (doliczana do stażu)</label>
+                <select id="education">
+                    <option value="0">Brak / Podstawowa</option>
+                    <option value="3">Zawodowa (3 lata)</option>
+                    <option value="5">Średnia ogólnokształcąca (4-5 lat)</option>
+                    <option value="6">Średnia zawodowa (5 lat)</option>
+                    <option value="6">Szkoła policealna (6 lat)</option>
+                    <option value="8">Studia wyższe (8 lat)</option>
+                </select>
+            </div>
+            <button class="btn-calc" onclick="calculateSeniority()">Oblicz Staż i Urlop</button>
+
+            <div class="result-box">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div style="text-align: center;">
+                        <small>Całkowity staż</small>
+                        <div class="result-value" id="seniority-res" style="font-size: 1.25rem;">-</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <small>Wymiar urlopu</small>
+                        <div class="result-value" id="vacation-res" style="font-size: 1.5rem; color: #16a34a;">-</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Stażu Pracy?</h2>
+            <p>Kalkulator stażu pracy to narzędzie ułatwiające wyliczanie łącznego czasu zatrudnienia, który ma bezpośredni wpływ na uprawnienia pracownicze wynikające z Kodeksu pracy. Staż pracy jest kluczowy dla ustalenia wymiaru przysługującego urlopu wypoczynkowego, długości okresu wypowiedzenia oraz nabycia praw do różnych świadczeń socjalnych i emerytalnych. Nasz portal pozwala na sumowanie okresów pracy u różnych pracodawców oraz doliczenie okresu nauki.</p>
+
+            <h2>Jak obliczyć wymiar urlopu?</h2>
+            <p>W Polsce obowiązują dwa podstawowe wymiary urlopu wypoczynkowego (dla pełnego etatu):</p>
+            <ul>
+                <li><strong>20 dni:</strong> Jeśli ogólny staż pracy pracownika jest krótszy niż 10 lat.</li>
+                <li><strong>26 dni:</strong> Jeśli ogólny staż pracy pracownika wynosi co najmniej 10 lat.</li>
+            </ul>
+            <p>Do stażu pracy, od którego zależy wymiar urlopu, wlicza się nie tylko okresy faktycznego zatrudnienia na podstawie umowy o pracę, ale również okresy nauki (nie podlegają one jednak sumowaniu, wybiera się najkorzystniejszy wariant ukończonej szkoły).</p>
+
+            <h2>Jakie okresy nauki wliczają się do stażu?</h2>
+            <p>Zgodnie z przepisami Kodeksu pracy, z tytułu ukończenia szkoły do stażu pracy dolicza się:</p>
+            <ul>
+                <li>Zasadnicza szkoła zawodowa – 3 lata.</li>
+                <li>Średnia szkoła ogólnokształcąca – 4 lata.</li>
+                <li>Średnia szkoła zawodowa – 5 lat.</li>
+                <li>Szkoła policealna – 6 lat.</li>
+                <li>Szkoła wyższa (studia licencjackie lub magisterskie) – 8 lat.</li>
+            </ul>
+
+            <h2>Zasady sumowania stażu pracy</h2>
+            <p>Okresy zatrudnienia sumuje się, co oznacza, że praca u kilku pracodawców (nawet z przerwami) składa się na jeden ogólny wynik. Ważne: okresy pracy równoległej nie podlegają sumowaniu – w takim przypadku wlicza się tylko jeden z nich. Nasz kalkulator automatycznie przelicza dni i miesiące na pełne lata, co pozwala precyzyjnie określić moment "przeskoku" na wyższy wymiar urlopu (26 dni).</p>
+
+            <h2>Przykłady obliczeń</h2>
+            <p>Przykład: Osoba po studiach wyższych (8 lat stażu) przepracowała 1 rok i 6 miesięcy w pierwszej firmie.</p>
+            <ol>
+                <li>Staż z tytułu nauki: 8 lat.</li>
+                <li>Staż z tytułu pracy: 1,5 roku.</li>
+                <li><strong>Lączny staż:</strong> 9 lat i 6 miesięcy.</li>
+                <li><strong>Urlop:</strong> Nadal 20 dni. Dopiero po przepracowaniu kolejnych 6 miesięcy staż wyniesie 10 lat i przysługiwać będzie 26 dni urlopu.</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Stażu Pracy</h2>
+                <div class="faq-item">
+                    <h3>Czy praca na umowę zlecenie wlicza się do stażu urlopowego?</h3>
+                    <p>Niestety, okresy pracy na podstawie umów cywilnoprawnych (zlecenie, o dzieło) zgodnie z obecnym Kodeksem pracy nie wliczają się do stażu, od którego zależy wymiar urlopu.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czy lata nauki i pracy w tym samym czasie sumują się?</h3>
+                    <p>Nie. Jeżeli w trakcie nauki pracowałeś, do stażu urlopowego wlicza się albo okres nauki, albo okres zatrudnienia – zależnie od tego, co jest korzystniejsze dla pracownika.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Ile urlopu ma osoba pracująca na pół etatu?</h3>
+                    <p>Wymiar urlopu dla pracownika niepełnozatrudnionego ustala się proporcjonalnie do wymiaru czasu pracy (np. 1/2 etatu z 20 dni to 10 dni urlopu).</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-dni.html" class="related-link">Kalkulator Dni</a>
+                <a href="kalkulator-frekwencji.html" class="related-link">Kalkulator Frekwencji</a>
+                <a href="kalkulator-procentowy.html" class="related-link">Kalkulator Procentowy</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Twoje prawa pracownicze są ważne.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calculateSeniority() {
+            const startStr = document.querySelector('.start-date').value;
+            const endStr = document.querySelector('.end-date').value;
+            const eduYears = parseInt(document.getElementById('education').value);
+
+            if (!startStr || !endStr) {
+                alert("Wypełnij daty zatrudnienia.");
+                return;
+            }
+
+            const start = new Date(startStr);
+            const end = new Date(endStr);
+            
+            // Simplified total years calculation for display
+            let diffMs = end - start;
+            let totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            let workYears = totalDays / 365;
+            
+            let totalYears = workYears + eduYears;
+            let yearsInt = Math.floor(totalYears);
+            let monthsInt = Math.floor((totalYears - yearsInt) * 12);
+
+            document.getElementById('seniority-res').textContent = `${yearsInt} l, ${monthsInt} m`;
+            
+            if (totalYears >= 10) {
+                document.getElementById('vacation-res').textContent = "26 dni";
+            } else {
+                document.getElementById('vacation-res').textContent = "20 dni";
+            }
+
+            document.querySelector('.result-box').classList.add('active');
+        }
+    </script>
+</body>
+</html>

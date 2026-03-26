@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Leasingowy - Oblicz ratę leasingu auta | CalcPremium</title>
+    <meta name="description" content="Szybki kalkulator leasingu operacyjnego. Oblicz wysokość raty, wpłatę własną i koszt całkowity. Sprawdź opłacalność leasingu dla swojej firmy!">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Leasing</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-key" style="color: var(--primary);"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3L15.5 7.5z"></path></svg>
+            </div>
+            <h1>Kalkulator Leasingowy</h1>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="input-group">
+                    <label>Wartość przedmiotu (zł netto)</label>
+                    <input type="number" id="car-value" placeholder="np. 100000">
+                </div>
+                <div class="input-group">
+                    <label>Wpłata własna (%)</label>
+                    <input type="number" id="down-payment" placeholder="np. 10">
+                </div>
+                <div class="input-group">
+                    <label>Okres leasingu (m-ce)</label>
+                    <input type="number" id="period" placeholder="np. 36">
+                </div>
+                <div class="input-group">
+                    <label>Wykup (%)</label>
+                    <input type="number" id="residual" placeholder="np. 1">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Oprocentowanie leasingu (%) (marża + WIBOR)</label>
+                <input type="number" id="base-rate" value="10.5" step="0.1">
+            </div>
+            <button class="btn-calc" onclick="calculateLease()">Oblicz Ratę Miesięczną</button>
+
+            <div class="result-box">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div style="text-align: center;">
+                        <small>Miesięczna rata (netto)</small>
+                        <div class="result-value" id="monthly-result" style="font-size: 1.5rem;">-</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <small>Całkowity koszt (%)</small>
+                        <div class="result-value" id="total-percent" style="font-size: 1.5rem; color: var(--text-muted);">-</div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                    Wynik ma charakter orientacyjny i nie stanowi oferty w rozumieniu KC.
+                </p>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Leasingowy?</h2>
+            <p>Kalkulator leasingowy to zaawansowane narzędzie przeznaczone dla przedsiębiorców oraz osób fizycznych planujących sfinansowanie zakupu samochodu, maszyn lub sprzętu IT. Pozwala on w prosty sposób symulować parametry umowy leasingu operacyjnego, obliczając miesięczny koszt raty netto. Dzięki niemu sprawdzisz, jak zmiana wpłaty własnej lub wartości wykupu wpływa na Twoją płynność finansową.</p>
+
+            <h2>Jak działa Kalkulator Leasingowy?</h2>
+            <p>Mechanizm obliczeniowy opiera się na matematyce finansowej renty płatnej z góry lub z dołu. System odejmuje wpłatę własną od wartości początkowej przedmiotu, a następnie rozkłada pozostałą kwotę (pomniejszoną o wartość wykupu) na miesięczne płatności wraz z naliczonymi odsetkami. Na koszt całkowity leasingu składa się suma wszystkich rat, wpłata początkowa oraz kwota wykupu końcowego.</p>
+
+            <h2>Zalety leasingu operacyjnego</h2>
+            <ul>
+                <li><strong>Korzyści podatkowe:</strong> Każdą ratę oraz wpłatę własną możesz w całości wliczyć w koszty uzyskania przychodu (w granicach limitu dla aut osobowych).</li>
+                <li><strong>Brak zamrożenia kapitału:</strong> Zamiast wydawać 150 tys. zł na auto, płacisz kilka tysięcy miesięcznie, inwestując resztę pieniędzy w rozwój firmy.</li>
+                <li><strong>Elastyczność:</strong> Po zakończeniu umowy możesz wykupić przedmiot na własność lub zwrócić go i wziąć nowy sprzęt.</li>
+            </ul>
+
+            <h2>Kluczowe parametry umowy</h2>
+            <p>Korzystając z naszego kalkulatora, zwróć uwagę na:</p>
+            <ul>
+                <li><strong>Wpłata własna (Czynsz inicjalny):</strong> Im wyższa na początku, tym niższa będzie Twoja miesięczna rata.</li>
+                <li><strong>Wykup (Residua):</strong> Wyższa wartość wykupu drastycznie obniża ratę, ale wymaga zgromadzenia większej gotówki na koniec umowy.</li>
+                <li><strong>WIBOR:</strong> Pamiętaj, że większość umów ma zmienne oprocentowanie oparte na stawkach międzybankowych.</li>
+            </ul>
+
+            <h2>Przykłady obliczeń</h2>
+            <p>Auto za 100 000 zł netto, 10% wpłaty (10 tys. zł), 36 miesięcy, 1% wykupu (1 tys. zł), oprocentowanie 10%:</p>
+            <ol>
+                <li>Kwota do spłaty w ratach: ok. 89 000 zł plus odsetki.</li>
+                <li>Miesięczna rata netto wyniesie ok. 2 850 zł.</li>
+                <li>Całkowity koszt leasingu wyniesie ok. 113%.</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Kalkulatorze Leasingowym</h2>
+                <div class="faq-item">
+                    <h3>Czy leasing jest dostępny dla nowych firm?</h3>
+                    <p>Wiele firm leasingowych oferuje procedury uproszczone już od pierwszego dnia działalności, choć zazwyczaj wymagają wtedy wyższej wpłaty własnej.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czym się różni leasing operacyjny od finansowego?</h3>
+                    <p>W operacyjnym przedmiot leasingu należy do firmy leasingowej (amortyzacja u nich), a w finansowym przedmiot jest składnikiem majątku Twojej firmy.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czy w kalkulatorze jest ubezpieczenie GAP?</h3>
+                    <p>Nasz kalkulator liczy goły koszt finansowania. Ubezpieczenia AC i GAP są zazwyczaj dodatkowo płatne i doliczane do raty przez leasingodawcę.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-procentowy.html" class="related-link">Kalkulator Procentowy</a>
+                <a href="kalkulator-odsetek.html" class="related-link">Kalkulator Odsetek</a>
+                <a href="kalkulator-spalania.html" class="related-link">Kalkulator Spalania</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Rozwijaj swoją firmę z głową.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calculateLease() {
+            const val = parseFloat(document.getElementById('car-value').value);
+            const down = parseFloat(document.getElementById('down-payment').value) / 100;
+            const res = parseFloat(document.getElementById('residual').value) / 100;
+            const months = parseInt(document.getElementById('period').value);
+            const rateYear = parseFloat(document.getElementById('base-rate').value) / 100;
+
+            if (!CalcUI.validate(['car-value', 'down-payment', 'residual', 'period'])) return;
+
+            const PV = val * (1 - down);
+            const FV = val * res;
+            const r = rateYear / 12;
+
+            // Monthly installment PMT formula: (PV - FV/(1+r)^n) * (r / (1 - (1+r)^-n))
+            const pmt = (PV - (FV / Math.pow(1 + r, months))) * (r / (1 - Math.pow(1 + r, -months)));
+            
+            const totalCost = (pmt * months) + (val * down) + FV;
+            const totalPercent = (totalCost / val) * 100;
+
+            document.getElementById('monthly-result').textContent = CalcUI.formatNumber(pmt, 2) + " zł";
+            document.getElementById('total-percent').textContent = CalcUI.formatNumber(totalPercent, 2) + "%";
+            document.querySelector('.result-box').classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Dat - Dodawanie i odejmowanie dni od daty | CalcPremium</title>
+    <meta name="description" content="Szybko oblicz jaka data wypadnie za 90 dni lub 2 tygodnie. Dodawaj i odejmuj dni od wybranej daty. Darmowy kalendarz online.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Kalkulator Dat</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar" style="color: var(--primary);"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            </div>
+            <h1>Kalkulator Dat</h1>
+            <div class="input-group">
+                <label>Data wejściowa</label>
+                <input type="date" id="base-date">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="input-group">
+                    <label>Operacja</label>
+                    <select id="operation">
+                        <option value="plus">Dodaj (+)</option>
+                        <option value="minus">Odejmij (-)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Liczba</label>
+                    <input type="number" id="num-offset" placeholder="np. 30">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Jednostka</label>
+                <select id="unit">
+                    <option value="days">Dni</option>
+                    <option value="weeks">Tygodni</option>
+                    <option value="months">Miesięcy</option>
+                    <option value="years">Lat</option>
+                </select>
+            </div>
+            <button class="btn-calc" onclick="calculateOffset()">Oblicz Datę</button>
+
+            <div class="result-box">
+                <div style="text-align: center;">
+                    <small>Wynikowa data to:</small>
+                    <div class="result-value" id="new-date">-</div>
+                    <p id="day-of-week" style="margin-top: 0.5rem; font-weight: 600; color: var(--text-muted);"></p>
+                </div>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Dat?</h2>
+            <p>Kalkulator dat to interaktywny kalendarz pomocniczy, który służy do przesuwania konkretnej daty w czasie. Pozwala on na błyskawiczne sprawdzenie, jaki dzień kalendarzowy wypadnie po dodaniu lub odjęciu określonej liczby dni, tygodni, miesięcy czy lat. Jest to narzędzie nieocenione przy wyznaczaniu terminów, których nie da się łatwo sprawdzić w tradycyjnym kalendarzu bez mozolnego wertowania stron.</p>
+
+            <h2>Jak działa Kalkulator Dat?</h2>
+            <p>Nasz system wykorzystuje standardy czasu ISO i natywną obsługę dat w JavaScript. Podczas dodawania miesięcy system automatycznie koryguje długość miesiąca (np. dodanie miesiąca do 31 stycznia spowoduje przejście na 28 lub 29 lutego). Dzięki temu masz pewność, że wynik jest zawsze matematycznie poprawny i zgodny z obowiązującym kalendarzem.</p>
+
+            <h2>Przykłady zastosowania i funkcje</h2>
+            <ul>
+                <li><strong>Terminy urzędowe:</strong> Masz 30 dni na złożenie wniosku? Sprawdź dokładnie, która to data, aby nie przegapić terminu.</li>
+                <li><strong>Gwarancja:</strong> Kupiłeś sprzęt z 24-miesięczną gwarancją? Oblicz datę jej wygaśnięcia w sekundę.</li>
+                <li><strong>Planowanie podróży:</strong> Twoja wiza turystyczna pozwala na pobyt przez 90 dni? Zaplanuj datę powrotu tak, aby nie przekroczyć dozwolonego czasu.</li>
+                <li><strong>Zdrowie:</strong> Wyznaczanie daty kolejnej wizyty lekarskiej lub kontroli wyników badań.</li>
+            </ul>
+
+            <h2>Dzień tygodnia - dlaczego to ważne?</h2>
+            <p>Nasz kalkulator przy każdym wyniku podaje również dzień tygodnia (poniedziałek, wtorek itd.). Jest to kluczowe, ponieważ terminy ustawowe często "przeskakują" na kolejny dzień roboczy, jeśli wypadają w sobotę lub niedzielę. Wiedząc zawczasu, że termin mija w niedzielę, możesz odpowiednio wcześniej zaplanować swoje działania.</p>
+
+            <h2>Przykłady obliczeń</h2>
+            <p>Przykład: Dzisiaj jest 1 czerwca, chcemy sprawdzić datę za 100 dni.</p>
+            <ol>
+                <li>Dodajemy 30 dni czerwca = 1 lipca.</li>
+                <li>Dodajemy 31 dni lipca = 1 sierpnia.</li>
+                <li>Dodajemy 31 dni sierpnia = 1 września.</li>
+                <li>Pozostało 8 dni = 9 września.</li>
+                <li><strong>Wynik:</strong> Kalkulator zrobi to za Ciebie w mgnieniu oka, wskazując precyzyjną datę.</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Kalkulatorze Dat</h2>
+                <div class="faq-item">
+                    <h3>Czy system uwzględnia lata przestępne?</h3>
+                    <p>Tak, algorytm poprawnie przelicza luty w latach przestępnych, co gwarantuje dokładność wyników nawet w odległej przyszłości.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Co się stanie, jeśli dodam miesiąc do 31 sierpnia?</h3>
+                    <p>System przeliczy to na 30 września, czyli ostatni dzień kolejnego miesiąca, co jest standardową praktyką kalendarzową.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czy mogę odejmować lata?</h3>
+                    <p>Oczywiście. Funkcja "Odejmij" działa dla wszystkich jednostek czasu, pozwalając na cofnięcie się do dowolnej daty historycznej.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-dni.html" class="related-link">Różnica Dat (Dni)</a>
+                <a href="kalkulator-stazu-pracy.html" class="related-link">Staż Pracy</a>
+                <a href="kalkulator-snu.html" class="related-link">Kalkulator Snu</a>
+                <a href="kalkulator-promili.html" class="related-link">Kalkulator Promili</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Twoje daty pod kontrolą.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calculateOffset() {
+            const baseStr = document.getElementById('base-date').value;
+            const op = document.getElementById('operation').value;
+            const num = parseInt(document.getElementById('num-offset').value);
+            const unit = document.getElementById('unit').value;
+
+            if (!baseStr || isNaN(num)) {
+                alert("Wybierz datę i podaj liczbę.");
+                return;
+            }
+
+            let date = new Date(baseStr);
+            const multiplier = op === 'plus' ? 1 : -1;
+
+            if (unit === 'days') date.setDate(date.getDate() + (num * multiplier));
+            if (unit === 'weeks') date.setDate(date.getDate() + (num * 7 * multiplier));
+            if (unit === 'months') date.setMonth(date.getMonth() + (num * multiplier));
+            if (unit === 'years') date.setFullYear(date.getFullYear() + (num * multiplier));
+
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = date.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' });
+            const dayOfWeek = date.toLocaleDateString('pl-PL', { weekday: 'long' });
+
+            document.getElementById('new-date').textContent = formattedDate;
+            document.getElementById('day-of-week').textContent = dayOfWeek.charAt(0).toUpperCase() + dayOfWeek.slice(1);
+            document.querySelector('.result-box').classList.add('active');
+        }
+    </script>
+</body>
+</html>

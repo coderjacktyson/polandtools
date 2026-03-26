@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Kalorii - Ile kalorii spalasz podczas ćwiczeń? | CalcPremium</title>
+    <meta name="description" content="Oblicz ile kalorii spaliłeś podczas biegania, pływania czy jazdy na rowerze. Darmowy kalkulator spalania kalorii z listą ponad 20 aktywności.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Kalorie (Spalanie)</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap" style="color: var(--primary);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <h1>Kalkulator Kalorii</h1>
+            <div class="input-group">
+                <label for="activity">Rodzaj aktywności</label>
+                <select id="activity">
+                    <option value="7">Bieganie (średnie tempo)</option>
+                    <option value="4">Spacerowanie (szybkie)</option>
+                    <option value="8">Jazda na rowerze (>20km/h)</option>
+                    <option value="6">Pływanie</option>
+                    <option value="5">Siłownia (trening siłowy)</option>
+                    <option value="3">Joga / Pilates</option>
+                    <option value="10">Crossfit / HIIT</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="weight">Twoja waga (kg)</label>
+                <input type="number" id="weight" placeholder="np. 80">
+            </div>
+            <div class="input-group">
+                <label for="duration">Czas trwania (minuty)</label>
+                <input type="number" id="duration" placeholder="np. 45">
+            </div>
+            <button class="btn-calc" onclick="calculateCalories()">Oblicz Spalanie</button>
+
+            <div class="result-box">
+                <div class="result-value" id="cal-result">- kcal</div>
+                <p style="text-align: center; margin-top: 0.5rem; color: var(--text-muted);">Tyle energii zużył Twój organizm podczas treningu.</p>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Kalorii?</h2>
+            <p>Kalkulator spalonych kalorii to zaawansowane narzędzie matematyczne, które pozwala oszacować wydatek energetyczny organizmu podczas konkretnej aktywności fizycznej. Wykorzystuje on dane o masie ciała użytkownika, czasie trwania wysiłku oraz intensywności treningu wyrażonej za pomocą współczynnika MET (Metabolic Equivalent of Task). To niezbędne urządzenie dla każdego, kto chce świadomie zarządzać swoją wagą i planować deficyt lub nadwyżkę kaloryczną.</p>
+
+            <h2>Jak działa Kalkulator Kalorii?</h2>
+            <p>Podstawą działania naszego kalkulatora jest wzór uwzględniający metaboliczny równoważnik zadania (MET). Jeden MET definiuje się jako ilość tlenu zużywaną przez organizm w spoczynku (ok. 3,5 ml tlenu na kilogram masy ciała na minutę). Im bardziej intensywne ćwiczenie, tym wyższy współczynnik MET. Przykładowo, szybkie bieganie ma znacznie wyższy MET niż spokojny spacer.</p>
+            <p>Wzór, którego używamy: <strong>Spalone kalorie = (MET * 3.5 * waga w kg) / 200 * czas w minutach</strong>. Dzięki temu otrzymujesz wynik spersonalizowany pod Twoje parametry biologiczne.</p>
+
+            <h2>Zalety korzystania z Kalkulatora Kalorii</h2>
+            <p>Monitorowanie wydatku energetycznego jest kluczowe w procesie odchudzania i budowania formy. Korzystając z naszego narzędzia:</p>
+            <ul>
+                <li><strong>Precyzyjnie planujesz posiłki:</strong> Wiedząc, ile spaliłeś na treningu, łatwiej dopasujesz kolację.</li>
+                <li><strong>Zwiększasz motywację:</strong> Zobaczenie liczby "500 kcal" po ciężkim treningu daje niesamowitą satysfakcję.</li>
+                <li><strong>Unikasz błędów:</strong> Wiele osób przecenia wydajność krótkich spacerów – nasz kalkulator sprowadza te oczekiwania do rzeczywistości.</li>
+            </ul>
+
+            <h2>Zastosowania Kalkulatora Kalorii</h2>
+            <p>Narzędzie to jest powszechnie stosowane przez biegaczy, kolarzy oraz osoby trenujące na siłowni. Pomaga w ustaleniu, jak długo należy wykonywać dany sport, aby spalić konkretną przekąskę (np. pączka czy pizzę). Jest również nieocenione przy planowaniu długofalowych celów sylwetkowych, gdzie kluczowe jest utrzymanie stabilnego deficytu energetycznego.</p>
+
+            <h2>Funkcje naszego narzędzia</h2>
+            <p>Zaprojektowaliśmy ten kalkulator tak, aby był maksymalnie użyteczny:</p>
+            <ul>
+                <li><strong>Bogata lista aktywności:</strong> Od jogi po intensywny Crossfit.</li>
+                <li><strong>Szybki interfejs:</strong> Wynik pojawia się natychmiast bez przeładowywania strony.</li>
+                <li><strong>Wsparcie dla urządzeń mobilnych:</strong> Możesz sprawdzić spalanie tuż po wyjściu z siłowni na swoim smartfonie.</li>
+            </ul>
+
+            <h2>Przykłady obliczeń</h2>
+            <p>Załóżmy, że ważysz 75 kg i biegałeś przez 30 minut (MET dla biegania to ok. 9.8):</p>
+            <ol>
+                <li>Obliczamy zużycie na minutę: (9.8 * 3.5 * 75) / 200 = 12.86 kcal/min.</li>
+                <li>Mnożymy przez czas: 12.86 * 30 = 385.8 kcal.</li>
+                <li><strong>Wynik:</strong> Podczas półgodzinnego biegu spalasz ok. 386 kalorii.</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Kalkulatorze Kalorii</h2>
+                <div class="faq-item">
+                    <h3>Czy tętno wpływa na wynik?</h3>
+                    <p>Tak, wyższe tętno zazwyczaj oznacza wyższą intensywność (wyższy MET), jednak nasz kalkulator opiera się na średnich wartościach dla danej dyscypliny sportowej.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czy waga mięśniowa ma znaczenie?</h3>
+                    <p>Osoby z wyższą masą mięśniową spalają nieco więcej kalorii nawet w spoczynku, co nasz uproszczony wzór uwzględnia poprzez ogólną masę ciała.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Ile kalorii trzeba spalić, aby zgubić 1 kg tłuszczu?</h3>
+                    <p>Przyjmuje się, że spalenie 7000–7700 kcal odpowiada utracie ok. 1 kg tkanki tłuszczowej.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czy picie wody przed treningiem zwiększa spalanie?</h3>
+                    <p>Picie wody nie zwiększa bezpośrednio spalania kalorii, ale nawodnienie pozwala na wykonanie dłuższego i intensywniejszego treningu.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-bmi.html" class="related-link">Kalkulator BMI</a>
+                <a href="kalkulator-zapotrzebowania-kalorycznego.html" class="related-link">Zapotrzebowanie Kaloryczne</a>
+                <a href="kalkulator-snu.html" class="related-link">Kalkulator Snu</a>
+                <a href="kalkulator-spalania.html" class="related-link">Spalanie Paliwa</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Twoja energia pod kontrolą.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calculateCalories() {
+            const met = parseFloat(document.getElementById('activity').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const duration = parseFloat(document.getElementById('duration').value);
+            
+            if (!CalcUI.validate(['weight', 'duration'])) return;
+
+            // Simple formula: MET * 3.5 * weight / 200 * duration
+            const kcal = (met * 3.5 * weight / 200) * duration;
+            CalcUI.showResult(Math.round(kcal), "kcal");
+        }
+    </script>
+</body>
+</html>

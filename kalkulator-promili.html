@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wirtualny Alkomat - Kalkulator Promili Online | CalcPremium</title>
+    <meta name="description" content="Sprawdź orientacyjne stężenie alkoholu we krwi. Darmowy kalkulator promili oparty na wzorze Widmarka. Dowiedz się kiedy będziesz mógł prowadzić.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Kalkulator Promili</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle" style="color: var(--primary);"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            </div>
+            <h1>Kalkulator Promili</h1>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">Wirtualny alkomat - oszacuj stężenie alkoholu (wynik orientacyjny).</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="input-group">
+                    <label>Płeć</label>
+                    <select id="gender">
+                        <option value="0.7">Mężczyzna</option>
+                        <option value="0.6">Kobieta</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Waga (kg)</label>
+                    <input type="number" id="weight" placeholder="np. 75">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Ilość czystego alkoholu (g)</label>
+                <input type="number" id="alcohol-grams" placeholder="np. 40">
+                <small style="color: var(--text-muted);">0.5L piwa ≈ 20-25g, 50ml wódki ≈ 16g</small>
+            </div>
+            <div class="input-group">
+                <label>Czas od wypicia (godziny)</label>
+                <input type="number" id="hours" placeholder="np. 2">
+            </div>
+            <button class="btn-calc" onclick="calculatePromille()">Oblicz Stężenie</button>
+
+            <div class="result-box">
+                <div class="result-value" id="promille-res">- ‰</div>
+                <p id="safety-msg" style="text-align: center; font-weight: 600; margin-top: 0.5rem; color: #ef4444;"></p>
+                <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">
+                    UWAGA: To tylko symulacja. Nigdy nie prowadź pod wpływem!
+                </p>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Promili?</h2>
+            <p>Kalkulator promili, często nazywany wirtualnym alkomatem, to narzędzie matematyczne służące do szacowania zawartości alkoholu etylowego we krwi (BAC - Blood Alcohol Content). Choć żaden program komputerowy nie zastąpi profesjonalnego alkomatu z atestem ani badania krwi, nasz kalkulator pozwala zorientować się, jak organizm radzi sobie z metabolizmem przyjętych trunków. Wynik podawany jest w promilach (‰), czyli jednostkach określających liczbę mililitrów czystego alkoholu w litrze krwi.</p>
+
+            <h2>Jak działa wzór Widmarka?</h2>
+            <p>Nasz kalkulator opiera się na klasycznym wzorze Erika Widmarka, który bierze pod uwagę masę ciała, płeć oraz ilość spożytego alkoholu w gramach. Kluczowym elementem jest współczynnik rozproszenia alkoholu w organizmie (r), który wynosi średnio 0,7 dla mężczyzn i 0,6 dla kobiet. Dodatkowo system uwzględnia czas, jaki upłynął od konsumpcji, odejmując statystyczną wartość eliminacji alkoholu (ok. 0,1 - 0,15 promila na godzinę).</p>
+
+            <h2>Zasady spalania alkoholu</h2>
+            <p>Proces usuwania alkoholu z organizmu zależy niemal wyłącznie od czasu i sprawności wątroby. Popularne "domowe sposoby" na przyspieszenie trzeźwienia, takie jak zimny prysznic, mocna kawa czy wysiłek fizyczny, mogą poprawić Twoje samopoczucie, ale nie obniżą stężenia alkoholu we krwi. Jedynym skutecznym lekarstwem jest cierpliwość – wątroba potrzebuje średnio godzinę na spalenie ok. 10 gramów czystego etanolu.</p>
+
+            <h2>Ważne ostrzeżenie prawne</h2>
+            <p>Pamiętaj, że wynik uzyskany w naszym kalkulatorze ma charakter wyłącznie poglądowy. Nie bierz go pod uwagę przy podejmowaniu decyzji o prowadzeniu samochodu lub obsłudze maszyn. Każdy organizm reaguje inaczej na alkohol – wpływ na wynik mają również: to co jadłeś przed piciem, zmęczenie, stan zdrowia oraz przyjmowane leki. Jeśli masz wątpliwości – nie wsiadaj za kółko!</p>
+
+            <h2>Przykłady ilości alkoholu w gramach</h2>
+            <ul>
+                <li><strong>Piwo (0,5L):</strong> ok. 20-25 gramów czystego etanolu.</li>
+                <li><strong>Wino (150ml):</strong> ok. 15-18 gramów.</li>
+                <li><strong>Szot wódki (50ml):</strong> ok. 16-18 gramów.</li>
+            </ul>
+
+            <div id="faq">
+                <h2>FAQ o Kalkulatorze Promili</h2>
+                <div class="faq-item">
+                    <h3>Czy jedzenie w trakcie picia zmienia wynik?</h3>
+                    <p>Jedzenie nie "zabiera" alkoholu z krwi, ale spowalnia jego wchłanianie z układu pokarmowego, co sprawia, że maksymalne stężenie jest niższe i pojawia się później.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Jaki jest limit prowadzenia aut w Polsce?</h3>
+                    <p>W Polsce dopuszczalne stężenie to poniżej 0,2 promila. Wartość od 0,2 do 0,5 promila to stan po użyciu alkoholu (wykroczenie), a powyżej 0,5 promila to stan nietrzeźwości (przestępstwo).</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Dlaczego kobiety trzeźwieją wolniej?</h3>
+                    <p>Wynika to z innej gospodarki wodnej organizmu oraz mniejszej ilości enzymu ADH (dehydrogenazy alkoholowej) odpowiedzialnego za rozkład etanolu.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-alkoholu.html" class="related-link">Przelicznik Alkoholu</a>
+                <a href="kalkulator-spalania.html" class="related-link">Kalkulator Spalania</a>
+                <a href="kalkulator-bmi.html" class="related-link">Kalkulator BMI</a>
+                <a href="kalkulator-kalorii.html" class="related-link">Kalkulator Kalorii</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Pij odpowiedzialnie.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calculatePromille() {
+            const gender = parseFloat(document.getElementById('gender').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const grams = parseFloat(document.getElementById('alcohol-grams').value);
+            const hours = parseFloat(document.getElementById('hours').value);
+
+            if (!CalcUI.validate(['weight', 'alcohol-grams'])) return;
+
+            // Widmark formula: BAC = (A / (W * r)) - (beta * T)
+            // beta is avg 0.15 promille per hour
+            let bac = (grams / (weight * gender));
+            bac -= (0.15 * hours);
+
+            if (bac < 0) bac = 0;
+
+            const res = CalcUI.formatNumber(bac, 2);
+            CalcUI.showResult(res, "‰");
+
+            const msg = document.getElementById('safety-msg');
+            if (bac >= 0.2) {
+                msg.textContent = "ABSOLUTNY ZAKAZ PROWADZENIA AUTA!";
+            } else if (bac > 0) {
+                msg.textContent = "Zachowaj czujność. Organizm wciąż przetwarza alkohol.";
+                msg.style.color = "#eab308";
+            } else {
+                msg.textContent = "Wirtualny wynik wynosi 0, ale zachowaj ostrożność.";
+                msg.style.color = "#22c55e";
+            }
+        }
+    </script>
+</body>
+</html>

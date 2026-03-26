@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Zapotrzebowania Kalorycznego BMR i TDEE | CalcPremium</title>
+    <meta name="description" content="Oblicz swoje dzienne zapotrzebowanie kaloryczne. Poznaj BMR i TDEE, aby skutecznie schudnąć lub zbudować masę. Darmowe narzędzie z naukami wzorami.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Zapotrzebowanie Kaloryczne</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card" style="max-width: 700px;">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity" style="color: var(--primary);"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            </div>
+            <h1>Kalkulator Zapotrzebowania</h1>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="input-group">
+                    <label>Płeć</label>
+                    <select id="sex">
+                        <option value="male">Mężczyzna</option>
+                        <option value="female">Kobieta</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Wiek</label>
+                    <input type="number" id="age" placeholder="np. 25">
+                </div>
+                <div class="input-group">
+                    <label>Waga (kg)</label>
+                    <input type="number" id="weight" placeholder="np. 70">
+                </div>
+                <div class="input-group">
+                    <label>Wzrost (cm)</label>
+                    <input type="number" id="height" placeholder="np. 175">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Poziom aktywności</label>
+                <select id="activity_level">
+                    <option value="1.2">Brak/Mała aktywność (praca siedząca)</option>
+                    <option value="1.375">Lekka aktywność (1-3 treningi/tydz)</option>
+                    <option value="1.55">Umiarkowana aktywność (3-5 treningów/tydz)</option>
+                    <option value="1.725">Duża aktywność (codzienne treningi)</option>
+                    <option value="1.9">Bardzo duża aktywność (sportowiec/ciężka praca fizyczna)</option>
+                </select>
+            </div>
+            <button class="btn-calc" onclick="calculateTDEE()">Oblicz Zapotrzebowanie</button>
+
+            <div class="result-box">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div style="text-align: center;">
+                        <small>Podstawowa Metabo. (BMR)</small>
+                        <div class="result-value" id="bmr-result" style="font-size: 1.5rem;">-</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <small>Całkowite (TDEE)</small>
+                        <div class="result-value" id="tdee-result" style="font-size: 1.5rem;">-</div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                    Aby schudnąć, odejmij ok. 300-500 kcal od wyniku TDEE.
+                </p>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Zapotrzebowanie Kaloryczne?</h2>
+            <p>Zapotrzebowanie kaloryczne to całkowita ilość energii, jaką Twój organizm zużywa w ciągu doby na podtrzymanie podstawowych funkcji życiowych oraz na wszelką aktywność fizyczną. Znajomość tej wartości jest fundamentem każdej diety – niezależnie od tego, czy Twoim celem jest utrata tkanki tłuszczowej, budowa mięśni czy utrzymanie obecnej wagi.</p>
+
+            <h2>BMR vs TDEE - Jak to rozumieć?</h2>
+            <p>W naszym kalkulatorze rozróżniamy dwa kluczowe wskaźniki:</p>
+            <ul>
+                <li><strong>BMR (Basal Metabolic Rate):</strong> To kalorie, które Twoje ciało spala "leżąc i nic nie robiąc". Energia ta jest potrzebna do bicia serca, oddychania, pracy nerek i utrzymania temperatury ciała.</li>
+                <li><strong>TDEE (Total Daily Energy Expenditure):</strong> To Twoje faktyczne zapotrzebowanie, czyli BMR pomnożone przez współczynnik aktywności fizycznej (PAL). Uwzględnia ono spacer do pracy, sprzątanie, treningi oraz tzw. NEAT (aktywność pozatreningową).</li>
+            </ul>
+
+            <h2>Zastosowania Kalkulatora Zapotrzebowania</h2>
+            <p>Narzędzie to jest kluczowe dla:</p>
+            <ul>
+                <li><strong>Osób na diecie redukcyjnej:</strong> Pozwala ustalić bezpieczny deficyt kaloryczny.</li>
+                <li><strong>Kulturystów i sportowców:</strong> Pomaga w planowaniu "masy" (nadwyżki kalorycznej).</li>
+                <li><strong>Każdego dbającego o zdrowie:</strong> Umożliwia uniknięcie efektu jojo poprzez świadome jedzenie.</li>
+            </ul>
+
+            <h2>Przykłady obliczeń (Wzór Mifflina-St Jeora)</h2>
+            <p>Nasz kalkulator korzysta z jednego z najdokładniejszych wzorów. Przykładowo dla mężczyzny (30 lat, 180 cm, 85 kg, aktywność umiarkowana):</p>
+            <ol>
+                <li>BMR = (10 * 85) + (6.25 * 180) - (5 * 30) + 5 = 1830 kcal.</li>
+                <li>TDEE = 1830 * 1.55 = 2836 kcal.</li>
+                <li><strong>Wniosek:</strong> Aby utrzymać wagę, mężczyzna ten powinien spożywać ok. 2840 kcal dziennie.</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Zapotrzebowaniu Kalorycznym</h2>
+                <div class="faq-item">
+                    <h3>Czy wiek wpływa na metabolizm?</h3>
+                    <p>Tak, z wiekiem metabolizm naturalnie zwalnia, co uwzględniamy we wzorze poprzez odejmowanie wartości pomnożonej przez lata użytkownika.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Jak wybrać poziom aktywności?</h3>
+                    <p>Większość osób przecenia swoją aktywność. Jeśli pracujesz w biurze i trenujesz 2 razy w tygodniu, wybierz "Lekką aktywność".</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Dlaczego wynik BMR jest ważny?</h3>
+                    <p>Nigdy nie powinieneś spożywać mniej kalorii niż wynosi Twój BMR, gdyż zagraża to prawidłowemu funkcjonowaniu narządów wewnętrznych.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-bmi.html" class="related-link">Kalkulator BMI</a>
+                <a href="kalkulator-kalorii.html" class="related-link">Kalkulator Spalania</a>
+                <a href="kalkulator-snu.html" class="related-link">Kalkulator Snu</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Odżywiaj się świadomie.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calculateTDEE() {
+            const sex = document.getElementById('sex').value;
+            const age = parseFloat(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const activity = parseFloat(document.getElementById('activity_level').value);
+            
+            if (!CalcUI.validate(['age', 'weight', 'height'])) return;
+
+            // Mifflin-St Jeor Equation
+            let bmr;
+            if (sex === 'male') {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+            } else {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+            }
+
+            const tdee = bmr * activity;
+
+            document.getElementById('bmr-result').textContent = Math.round(bmr) + " kcal";
+            document.getElementById('tdee-result').textContent = Math.round(tdee) + " kcal";
+            document.querySelector('.result-box').classList.add('active');
+        }
+    </script>
+</body>
+</html>

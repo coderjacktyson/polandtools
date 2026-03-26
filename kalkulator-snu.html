@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Snu - Oblicz idealny czas pobudki | CalcPremium</title>
+    <meta name="description" content="Kiedy powinieneś iść spać, aby obudzić się rano wypoczętym? Nasz kalkulator snu oblicza cykle 90-minutowe. Poznaj sekret regeneracji!">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Kalkulator Snu</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card">
+            <h1>Kalkulator Snu</h1>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--text-muted);">Zaplanuj swój sen w oparciu o cykle 90-minutowe.</p>
+            
+            <div class="input-group">
+                <label>Chcę się obudzić o godzinie:</label>
+                <input type="time" id="wake-time" value="07:00">
+            </div>
+            <button class="btn-calc" onclick="calculateSleep()">Oblicz kiedy iść spać</button>
+
+            <div class="result-box" id="sleep-results">
+                <p style="text-align: center; margin-bottom: 1rem; font-weight: 600;">Powinieneś zasnąć o jednej z tych godzin:</p>
+                <div id="times-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; text-align: center;">
+                    <!-- Hours will appear here -->
+                </div>
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                    Uwzględniliśmy 15 minut na samo zasypianie.
+                </p>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Snu?</h2>
+            <p>Kalkulator snu to proste, ale niezwykle skuteczne narzędzie oparte na chronobiologii, które pomaga zoptymalizować czas wypoczynku nocnego. Zamiast liczyć ogólną liczbę godzin spędzonych w łóżku, kalkulator skupia się na tzw. cyklach snu. Pozwala on obliczyć najlepszą godzinę na pójście do łóżka tak, aby faza wybudzenia nastąpiła w najbardziej korzystnym momencie dla Twojego mózgu.</p>
+
+            <h2>Jak działa Kalkulator Snu?</h2>
+            <p>Ludzki sen nie jest jednorodny – składa się z powtarzających się faz (NREM i REM). Jeden pełny cykl trwa średnio około 90 minut. Jeśli obudzisz się w połowie cyklu (np. w fazie snu głębokiego), będziesz czuł się oszołomiony i zmęczony nawet po 10 godzinach snu. </p>
+            <p>Nasz kalkulator odejmuje od godziny pobudki wielokrotności 90 minut (5 lub 6 pełnych cykli) oraz dolicza 15 minut, czyli średni czas potrzebny zdrowemu człowiekowi na zaśnięcie. Dzięki temu budzisz się "pomiędzy" cyklami, co gwarantuje uczucie świeżości od samego rana.</p>
+
+            <h2>Zalety korzystania z Kalkulatora Snu</h2>
+            <p>Prawidłowe planowanie snu to inwestycja w Twoje długofalowe zdrowie i produktywność:</p>
+            <ul>
+                <li><strong>Lepsza koncentracja:</strong> Budzenie się w lekkiej fazie snu zwiększa sprawność intelektualną przez cały dzień.</li>
+                <li><strong>Lepszy nastrój:</strong> Unikanie "bezładu sennego" po nagłym przerwaniu snu głębokiego zapobiega frustracji o poranku.</li>
+                <li><strong>Efektywność:</strong> Czasem 6 godzin snu (4 cykle) zaplanowane poprawnie daje lepszą regenerację niż 8 godzin snu chaotycznego.</li>
+            </ul>
+
+            <h2>Zastosowania Kalkulatora Snu</h2>
+            <p>Narzędzie jest idealne dla osób pracujących w systemie zmianowym, studentów uczących się do późna oraz rodziców małych dzieci. Jeśli wiesz, że musisz wstać wyjątkowo wcześnie, kalkulator podpowie Ci, jak "wcisnąć" odpowiednią liczbę cykli, by mimo krótszego snu czuć się funkcjonalnie.</p>
+
+            <h2>Przykłady obliczeń</h2>
+            <p>Jeśli planujesz pobudkę o 7:00 rano:</p>
+            <ol>
+                <li>6 cykli (9 godzin snu): Powinieneś zasnąć o 22:00. Pójście do łóżka o 21:45.</li>
+                <li>5 cykli (7.5 godziny snu): Powinieneś zasnąć o 23:30. Pójście do łóżka o 23:15.</li>
+                <li>4 cykle (6 godzin snu): Powinieneś zasnąć o 01:00. Pójście do łóżka o 00:45.</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Kalkulatorze Snu</h2>
+                <div class="faq-item">
+                    <h3>Czy 90 minut to stała wartość dla każdego?</h3>
+                    <p>To średnia statystyczna. U niektórych osób cykl może trwać od 80 do 110 minut, ale 90-minutowy model sprawdza się u większości dorosłych.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czy drzemka w ciągu dnia też podlega tym zasadom?</h3>
+                    <p>Drzemka powinna trwać albo 20 minut (faza lekka), albo pełne 90 minut. Inaczej grozi nam uczucie oszołomienia.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Co jeśli nie mogę zasnąć w 15 minut?</h3>
+                    <p>Jeśli wiesz, że zasypianie zajmuje Ci pół godziny, dodaj do zaproponowanych godzin dodatkowe 15 minut marginesu.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-bmi.html" class="related-link">Kalkulator BMI</a>
+                <a href="kalkulator-kalorii.html" class="related-link">Kalkulator Kalorii</a>
+                <a href="kalkulator-zapotrzebowania-kalorycznego.html" class="related-link">Zapotrzebowanie Kaloryczne</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Śpij dobrze, żyj lepiej.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calculateSleep() {
+            const wakeTime = document.getElementById('wake-time').value;
+            if (!wakeTime) return;
+
+            const [hours, mins] = wakeTime.split(':').map(Number);
+            let wakeDate = new Date();
+            wakeDate.setHours(hours, mins, 0);
+
+            const container = document.getElementById('times-list');
+            container.innerHTML = "";
+
+            // Calculate 6, 5, 4 and 3 cycles (backward)
+            // Adding 15 mins for falling asleep
+            [6, 5, 4, 3].forEach(cycles => {
+                let sleepDate = new Date(wakeDate.getTime());
+                sleepDate.setMinutes(sleepDate.getMinutes() - (cycles * 90) - 15);
+                
+                const timeStr = sleepDate.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' });
+                const div = document.createElement('div');
+                div.className = 'related-link';
+                div.style.padding = '10px';
+                div.innerHTML = `<strong>${timeStr}</strong><br><small>${cycles} cykli</small>`;
+                container.appendChild(div);
+            });
+
+            document.querySelector('.result-box').classList.add('active');
+        }
+    </script>
+</body>
+</html>

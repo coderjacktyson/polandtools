@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Odsetek Ustawowych 2024 | CalcPremium</title>
+    <meta name="description" content="Oblicz odsetki ustawowe za opóźnienie w transakcjach handlowych. Aktualne stawki, proste obliczenia i profesjonalne wyniki. Sprawdź teraz!">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Odsetki Ustawowe</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card">
+            <h1>Odsetki Ustawowe</h1>
+            <div class="input-group">
+                <label>Kwota faktury/długu (zł)</label>
+                <input type="number" id="debt" placeholder="np. 12000">
+            </div>
+            <div class="input-group">
+                <label>Rodzaj odsetek</label>
+                <select id="interest-type">
+                    <option value="11.25">Ustawowe za opóźnienie (11,25%)</option>
+                    <option value="15.00">W transakcjach handlowych (15,00%)</option>
+                    <option value="9.25">Kapitałowe (9,25%)</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Od dnia</label>
+                <input type="date" id="start-date">
+            </div>
+            <div class="input-group">
+                <label>Do dnia</label>
+                <input type="date" id="end-date">
+            </div>
+            <button class="btn-calc" onclick="calculateStatutory()">Oblicz Odsetki</button>
+
+            <div class="result-box">
+                <div class="result-value" id="statutory-result">- zł</div>
+                <p style="text-align: center; margin-top: 0.5rem; color: var(--text-muted);">Kwota należnych odsetek cywilnoprawnych.</p>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to są Odsetki Ustawowe?</h2>
+            <p>Odsetki ustawowe to specyficzna forma odszkodowania należnego wierzycielowi za zwłokę dłużnika w spełnieniu świadczenia pieniężnego. W polskim systemie prawnym wysokość tych odsetek jest regulowana przez Kodeks cywilny i obwieszczenia Ministra Sprawiedliwości. Nasz kalkulator pozwala na szybkie i precyzyjne wyliczenie należności w trzech najpopularniejszych wariantach prawnych: za opóźnienie, kapitałowych oraz w transakcjach handlowych (B2B).</p>
+
+            <h2>Rodzaje Odsetek Ustawowych</h2>
+            <p>Wyróżniamy kilka typów odsetek, które nasz kalkulator obsługuje:</p>
+            <ul>
+                <li><strong>Odsetki ustawowe kapitałowe (zwykłe):</strong> Należne np. z tytułu umowy pożyczki, gdy w umowie nie określono ich wysokości. Wynoszą stopę referencyjną NBP + 3,5 pkt proc.</li>
+                <li><strong>Odsetki ustawowe za opóźnienie:</strong> Najpowszechniejsze, należne od pierwszego dnia po terminie płatności faktury lub umowy. Wynoszą stopę referencyjną NBP + 5,5 pkt proc.</li>
+                <li><strong>Odsetki w transakcjach handlowych:</strong> Specjalna stawka dla firm, mająca na celu zwalczanie zatorów płatniczych. Wynoszą stopę referencyjną NBP + 8 lub 10 pkt proc.</li>
+            </ul>
+
+            <h2>Jak działa Kalkulator Odsetek Ustawowych?</h2>
+            <p>Aplikacja wylicza odsetki metodą liniową (odsetki proste). Każdy dzień zwłoki generuje konkretną kwotę na podstawie wybranej stopy rocznej. Formuła obliczeń to: <strong>Kwota długu * stopa odsetek (%) * liczba dni zwłoki / 365.</strong> Zaletą naszego narzędzia jest to, że automatycznie rozpoznaje liczbę dni między wybranymi datami, oszczędzając czas użytkownika.</p>
+
+            <h2>Sytuacje, w których warto skorzystać z kalkulatora</h2>
+            <ul>
+                <li>Przygotowanie wezwania do zapłaty dla dłużnika.</li>
+                <li>Weryfikacja wyliczeń przesłanych przez kontrahenta.</li>
+                <li>Wycena roszczenia przed skierowaniem sprawy do sądu.</li>
+                <li>Rozliczenia prywatne między osobami fizycznymi.</li>
+            </ul>
+
+            <h2>Przykłady obliczeń</h2>
+            <p>Przykład: Faktura o wartości 10 000 zł opłacona 30 dni po terminie (odsetki za opóźnienie 11,25%):</p>
+            <ol>
+                <li>Wyznaczamy stawkę dzienną: 11,25% / 365 = 0,000308.</li>
+                <li>Mnożymy przez kwotę: 10 000 * 0,000308 = 3,08 zł dziennie.</li>
+                <li>Mnożymy przez liczbę dni: 3,08 * 30 = 92,40 zł.</li>
+                <li><strong>Wynik:</strong> Kwota odsetek do dopłaty to 92,47 zł.</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Odsetkach Ustawowych</h2>
+                <div class="faq-item">
+                    <h3>Czy mogę żądać odsetek bez wezwania do zapłaty?</h3>
+                    <p>Odsetki za opóźnienie należą się wierzycielowi "z automatu" od dnia następującego po terminie płatności, bez konieczności wysyłania dodatkowych ponagleń.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czy odsetki przedawniają się?</h3>
+                    <p>Tak, roszczenia o odsetki jako świadczenia okresowe przedawniają się z upływem 3 lat.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czy można kapitalizować odsetki ustawowe?</h3>
+                    <p>Zasada anatocyzmu (zakaz naliczania odsetek od odsetek) obowiązuje do momentu wytoczenia o nie powództwa przed sądem.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-odsetek-podatkowych.html" class="related-link">Odsetki Podatkowe</a>
+                <a href="kalkulator-leasingowy.html" class="related-link">Kalkulator Leasingowy</a>
+                <a href="kalkulator-odsetek.html" class="related-link">Kalkulator Odsetek</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Profesjonalne wsparcie prawne i finansowe.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calculateStatutory() {
+            const debt = parseFloat(document.getElementById('debt').value);
+            const rate = parseFloat(document.getElementById('interest-type').value) / 100;
+            const startDateStr = document.getElementById('start-date').value;
+            const endDateStr = document.getElementById('end-date').value;
+
+            if (!debt || !startDateStr || !endDateStr) {
+                alert("Proszę uzupełnić wszystkie dane.");
+                return;
+            }
+
+            const start = new Date(startDateStr);
+            const end = new Date(endDateStr);
+            const diffTime = end - start;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays <= 0) {
+                alert("Data końcowa musi być późniejsza niż początkowa.");
+                return;
+            }
+
+            const interest = (debt * rate * diffDays) / 365;
+            CalcUI.showResult(CalcUI.formatNumber(interest, 2), "zł");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Odsetek - Oblicz zysk z oszczędności | CalcPremium</title>
+    <meta name="description" content="Nasz kalkulator odsetek pozwala obliczyć zysk z oszczędności i lokat. Obsługuje odsetki proste oraz składane. Sprawdź ile zarobisz na swoim kapitale!">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">CalcPremium</a>
+            <div class="breadcrumbs"><a href="../index.html">Strona Główna</a> / Odsetki</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="calc-card">
+            <h1>Kalkulator Odsetek</h1>
+            <div class="input-group">
+                <label>Kapitał początkowy (zł)</label>
+                <input type="number" id="capital" placeholder="np. 10000">
+            </div>
+            <div class="input-group">
+                <label>Oprocentowanie roczne (%)</label>
+                <input type="number" id="rate" placeholder="np. 7.5" step="0.1">
+            </div>
+            <div class="input-group">
+                <label>Okres (lata)</label>
+                <input type="number" id="years" placeholder="np. 2">
+            </div>
+            <div class="input-group">
+                <label>Kapitalizacja</label>
+                <select id="compounding">
+                    <option value="12">Miesięczna (odsetki składane)</option>
+                    <option value="4">Kwartalna</option>
+                    <option value="1">Roczna</option>
+                    <option value="0">Brak (odsetki proste)</option>
+                </select>
+            </div>
+            <button class="btn-calc" onclick="calculateInterest()">Oblicz Zysk</button>
+
+            <div class="result-box">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div style="text-align: center;">
+                        <small>Suma końcowa</small>
+                        <div class="result-value" id="total-result" style="font-size: 1.5rem;">-</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <small>Same odsetki</small>
+                        <div class="result-value" id="interest-result" style="font-size: 1.5rem; color: #16a34a;">-</div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                    Wynik nie uwzględnia podatku Belki (19%).
+                </p>
+            </div>
+        </section>
+
+        <article class="content-section">
+            <h2>Co to jest Kalkulator Odsetek?</h2>
+            <p>Kalkulator odsetek to niezbędne narzędzie finansowe dla każdego świadomego inwestora i oszczędzającego. Pozwala ono przewidzieć przyszłą wartość Twojego kapitału na podstawie przyjętej stopy procentowej oraz czasu trwania inwestycji. Niezależnie od tego, czy planujesz otworzyć lokatę bankową, czy chcesz sprawdzić rentowność pożyczki, nasz kalkulator dostarczy Ci precyzyjnych danych w kilka sekund.</p>
+
+            <h2>Jak działa Kalkulator Odsetek?</h2>
+            <p>Nasz algorytm obsługuje dwa główne typy obliczeń finansowych:</p>
+            <ul>
+                <li><strong>Odsetki proste:</strong> Odsetki są naliczane tylko od pierwotnego kapitału. Nie są dopisywane do kwoty bazowej w kolejnych okresach. Wzór: K = K0 * (1 + r * t).</li>
+                <li><strong>Odsetki składane:</strong> To mechanizm, w którym odsetki z poprzednich okresów są dopisywane do kapitału i same zaczynają pracować na kolejny zysk. To potęga procentu składanego, o którym Albert Einstein mówił, że jest ósmym cudem świata.</li>
+            </ul>
+
+            <h2>Zalety korzystania z Kalkulatora Odsetek</h2>
+            <ul>
+                <li><strong>Planowanie przyszłości:</strong> Dowiesz się dokładnie, ile musisz oszczędzać, aby osiągnąć swój cel finansowy.</li>
+                <li><strong>Porównywanie ofert:</strong> Możesz szybko sprawdzić, czy oferta lokaty z kapitalizacją miesięczną 6% jest lepsza niż lokata kwartalna 6.5%.</li>
+                <li><strong>Brak błędów:</strong> Ręczne liczenie potęg w procentach składanych jest trudne – nasz kalkulator robi to bezbłędnie.</li>
+            </ul>
+
+            <h2>Funkcje naszego narzędzia</h2>
+            <p>Aplikacja CalcPremium oferuje elastyczność w doborze parametrów:</p>
+            <ul>
+                <li>Wybór częstotliwości kapitalizacji (miesięczna, kwartalna, roczna).</li>
+                <li>Obsługa wartości dziesiętnych dla oprocentowania (np. 7.25%).</li>
+                <li>Przejrzysty podział na kapitał końcowy oraz zarobioną czystą kwotę odsetek.</li>
+            </ul>
+
+            <h2>Przykłady obliczeń</h2>
+            <p>Przykład: Inwestujesz 10 000 zł na 2 lata przy oprocentowaniu 8% z kapitalizacją roczną.</p>
+            <ol>
+                <li>Po pierwszym roku Twój kapitał to 10 000 + 800 = 10 800 zł.</li>
+                <li>W drugim roku odsetki są liczone od 10 800 zł: 10 800 * 0.08 = 864 zł.</li>
+                <li><strong>Suma końcowa:</strong> 11 664 zł. Twoje odsetki to 1 664 zł (w odsetkach prostych byłoby to równe 1 600 zł).</li>
+            </ol>
+
+            <div id="faq">
+                <h2>FAQ o Kalkulatorze Odsetek</h2>
+                <div class="faq-item">
+                    <h3>Czym jest kapitalizacja odsetek?</h3>
+                    <p>To proces dopisywania wypracowanego zysku do kapitału bazowego, co pozwala na generowanie odsetek od odsetek w kolejnym okresie.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Czy wynik uwzględnia inflację?</h3>
+                    <p>Nasz kalkulator podaje wartości nominalne. Aby sprawdzić realny zysk, należy od wyniku odjąć wskaźnik inflacji.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Co to jest podatek Belki?</h3>
+                    <p>W Polsce zysk z oszczędności finansowych jest opodatkowany stawką 19%. Aby otrzymać kwotę "na rękę", należy od kwoty odsetek odjąć ten podatek.</p>
+                </div>
+            </div>
+
+            <h2>Powiązane kalkulatory</h2>
+            <div class="related-grid">
+                <a href="kalkulator-lokat.html" class="related-link">Kalkulator Lokat</a>
+                <a href="kalkulator-odsetek-ustawowych.html" class="related-link">Odsetki Ustawowe</a>
+                <a href="kalkulator-odsetek-podatkowych.html" class="related-link">Odsetki Podatkowe</a>
+                <a href="kalkulator-leasingowy.html" class="related-link">Kalkulator Leasingowy</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CalcPremium - Pomnażaj swój kapitał mądrze.</p>
+    </footer>
+
+    <script src="../js/calc.js"></script>
+    <script>
+        function calculateInterest() {
+            const capital = parseFloat(document.getElementById('capital').value);
+            const rate = parseFloat(document.getElementById('rate').value) / 100;
+            const years = parseFloat(document.getElementById('years').value);
+            const compounding = parseInt(document.getElementById('compounding').value);
+            
+            if (!CalcUI.validate(['capital', 'rate', 'years'])) return;
+
+            let total;
+            if (compounding === 0) {
+                // Simple Interest
+                total = capital * (1 + (rate * years));
+            } else {
+                // Compound Interest: A = P(1 + r/n)^(nt)
+                total = capital * Math.pow((1 + (rate / compounding)), (compounding * years));
+            }
+
+            const interest = total - capital;
+
+            document.getElementById('total-result').textContent = CalcUI.formatNumber(total, 2) + " zł";
+            document.getElementById('interest-result').textContent = "+" + CalcUI.formatNumber(interest, 2) + " zł";
+            document.querySelector('.result-box').classList.add('active');
+        }
+    </script>
+</body>
+</html>
